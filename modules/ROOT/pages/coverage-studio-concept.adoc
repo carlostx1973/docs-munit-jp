@@ -1,0 +1,34 @@
+= カバー率レポートについて (Studio)
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+上記画像の [Coverage (カバー率)] ボタンをクリックすると、テストの対象となっているフロー、およびそれらのフロー内のイベントプロセッサの割合が表示されます。
+
+image::using-munit-in-anypoint-studio-b3762.png[]
+
+[Overall Coverage (全体のカバー率)] の値は、MUnit テストによって実行された Mule アプリケーションイベントプロセッサの割合を表します。
+
+[Generate Report (レポートの生成)] ボタンをクリックすると、MUnit テストに含まれていた Mule 設定ファイルによって含まれるフローとイベントプロセッサの詳細を表示するレポートを取得できます。
+
+image::using-munit-in-anypoint-studio-acd3b.png[]
+
+[%header,cols="20a,80a"]
+|===
+|列 |説明
+|リソース   | Mule 設定ファイルの名前。
+|フロー | Mule 設定項目内のフロー数。
+|Weight (加重) | この項目は、設定ファイル内に含まれるアプリケーションの量を表します。 +
+ドキュメント内のイベントプロセッサの総数と Mule 設定ファイルに含まれるイベントプロセッサの数の割合として計算されます。
+|Coverage (カバー率) | この項目は、MUnit テストで実行されている Mule 設定ファイル内のイベントプロセッサの割合を表します。
+|===
+
+さらに、各リソースをクリックすると、そのリソースで実行されたイベントプロセッサのより具体的な詳細レポートを取得できます。
+
+image::using-munit-in-anypoint-studio-1e4ee.png[]
+
+
+== 関連情報
+
+* xref:munit-coverage-report.adoc[カバー率レポート]
+* xref:faq-how-munit-coverage.adoc[FAQ: MUnit がカバー率を計算する方法]

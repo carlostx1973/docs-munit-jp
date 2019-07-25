@@ -1,0 +1,58 @@
+= ドメインベースのアプリケーションの MUnit サポートについて
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+MUnit では、Mule ドメインを参照して実行されるアプリケーションをテストできます。 +
+ドメインベースのアプリケーションの MUnit サポートは、最小限のコード変更で実装できるように設計されています。ただし、Mule アプリケーションが Mule ドメインに連動している場合、次の点を考慮してください。
+
+* Anypoint Studio で作業する場合、常に Mule ドメインがワークスペースに含まれている必要があります。
+* フォルダの名前は、アーティファクトと同じにする必要があります。 +
+Mule アプリケーションであるか、Mule ドメインであるかに関係なく、Mule プロジェクトが含まれているワークスペースのフォルダの名前は、pom ファイルで定義されているアーティファクト ID と同じにする必要があります。
++
+たとえば、プロジェクトのアーティファクト ID が次のようになっている場合、
++
+[source,xml,linenums]
+----
+<artifactId>mule-project</artifactId>
+----
++
+Studio ワークスペースのフォルダの名前は、`mule-project` にする必要があります。 +
+これは大文字と小文字が区別されます。フォルダの名前が `Mule-Project` の場合、MUnit でプロジェクトが認識されません。
+* リソースは、M2 リポジトリにインストールされている必要があります。 +
+ドメインと Mule アプリケーションは、通常の連動関係として処理する必要があります。これらをアーティファクトとして設定するには、これらを M2 リポジトリにインストールする必要があります。
+* リソースは、テストスイートの pom ファイルに含まれている必要があります。
++
+次のような Mule ドメインプロジェクトの場合、
++
+[source,xml,linenums]
+----
+<modelVersion>4.0.0</modelVersion>
+<groupId>org.mule.app</groupId>
+<artifactId>domain-project</artifactId>
+<packaging>mule-domain</packaging>
+<version>1.0.0-SNAPSHOT</version>
+<name>Domain domain-project Project</name>
+----
++
+Mule アプリケーションの連動関係は次のようになっている必要があります。
++
+[source,xml,linenums]
+----
+<dependency>
+    <groupId>org.mule.app</groupId>
+    <artifactId>domain-project</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <classifier>mule-domain</classifier>
+    <scope>provided</scope>
+</dependency>
+----
++
+[TIP]
+--
+リポジトリとテストスイートの pom ファイルで `<version>` アーティファクトとの一貫性を確保してください。
+--
+
+== 関連情報
+
+* xref:7.1@studio::domain-support-concept.adoc[ドメインサポートについて (Anypoint Studio)]

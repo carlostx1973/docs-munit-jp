@@ -1,0 +1,14 @@
+= MUnit イベントプロセッサについて
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+MUnit には Mule イベントのコンテンツと状況を検証、アサート、およびモックすることを目的とした一連の専用イベントプロセッサがあり、Mule アプリケーションに対して自動テストを実行できます。
+
+== 関連情報
+
+* xref:assertion-message-processor.adoc[Assertion イベントプロセッサ]
+* xref:set-message-processor.adoc[Set イベントプロセッサ]
+* xref:mock-message-processor.adoc[Mock When イベントプロセッサについて]
+* xref:verify-message-processor.adoc[Verify イベントプロセッサ]
+* xref:spy-processor-concept.adoc[Spy イベントプロセッサ]

@@ -1,0 +1,15 @@
+= RAML から MUnit テストスイートを生成する方法
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+RAML 定義から MUnit テストスイートを自動的に生成するには、Apikit を使用してプロジェクトを生成する必要があります。
+
+. プロジェクトの APIKit ルータを見つけて、右クリックします。
+. [Create Test Suite For Project From RAML (RAML からプロジェクトのテストスイートを作成)] を選択します。
+
+これにより、API 定義に記述されているエンドポイントに基づいて、MUnit テストスイートのスキャフォールディングが自動的に行われます。
+
+== 関連情報
+
+* xref:munit-suite.adoc[テストスイートについて]

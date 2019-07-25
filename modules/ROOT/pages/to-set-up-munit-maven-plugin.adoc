@@ -1,0 +1,103 @@
+= MUnit Maven プラグインをセットアップする方法 (Maven)
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+Maven を使用して MUnit を適切に実行するには、いくつかのセクションを pom.xml ファイルに追加する必要があります。
+
+このドキュメントは、pom.xml に <munit.version> プロパティがあることを前提とします。
+
+
+
+* 次のセクションを pom.xml に追加して、MUnit Maven プラグインを有効にします。
++
+.MUnit Mavenプラグイン
+[source,xml,linenums]
+----
+<build>
+  <plugins>
+  ...
+
+    <plugin>
+      <groupId>com.mulesoft.munit.tools</groupId>
+      <artifactId>munit-maven-plugin</artifactId>
+      <version>${munit.version}</version>
+      <executions>
+        <execution>
+          <id>test</id>
+          <phase>test</phase>
+          <goals>
+            <goal>test</goal>
+          </goals>
+        </execution>
+      </executions>
+    </plugin>
+
+  ...
+  </plugins>
+</build>
+----
+* MUnit 連動関係を pom.xml に追加します。
++
+.連動関係
+[source,xml,linenums]
+----
+<dependencies>
+  ...
+  <dependency>
+    <groupId>com.mulesoft.munit</groupId>
+    <artifactId>munit-runner</artifactId>
+    <version>${munit.version}</version>
+    <classifier>mule-plugin</classifier>
+    <scope>test</scope>
+  </dependency>
+  <dependency>
+    <groupId>com.mulesoft.munit</groupId>
+    <artifactId>munit-tools</artifactId>
+    <version>${munit.version}</version>
+    <classifier>mule-plugin</classifier>
+    <scope>test</scope>
+  </dependency>
+  ...
+</dependencies>
+----
+
+* 最後に、Maven が MUnit 連動関係とプラグインをダウンロードする場所 (リポジトリ) をセットアップする必要があります。
++
+.リポジトリ
+[source,xml,linenums]
+----
+<repositories>
+  <repository>
+    <id>mulesoft-releases</id>
+      <name>MuleSoft Releases Repository</name>
+      <url>http://repository.mulesoft.org/releases/</url>
+      <layout>default</layout>
+    </repository>
+</repositories>
+----
++
+.プラグインリポジトリ
+[source,xml,linenums]
+----
+<pluginRepositories>
+  <pluginRepository>
+    <id>mulesoft-release</id>
+    <name>mulesoft release repository</name>
+    <layout>default</layout>
+    <url>http://repository.mulesoft.org/releases/</url>
+    <snapshots>
+      <enabled>false</enabled>
+    </snapshots>
+  </pluginRepository>
+</pluginRepositories>
+----
+
+
+MUnit には Surefire サポートが組み込まれています。追加の設定は必要ありません。 +
+レポートは target/surefire-reports の下にあります。
+
+== 関連情報
+
+* xref:faq-working-with-parent-pom.adoc[FAQ: 親 POM ファイルを処理する方法]
+* xref:munit-maven-support.adoc[MUnit Maven プラグインについて]

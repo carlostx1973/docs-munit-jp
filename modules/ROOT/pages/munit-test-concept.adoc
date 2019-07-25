@@ -1,0 +1,157 @@
+= Munit テストについて
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+MUnit テストは、MUnit テストスイートの基本的なプロセッサです。これは、試行する各テストシナリオを表します。
+
+MUnit テストは、3 つのスコープに分かれています。
+
+[%header,cols="20,80"]
+|===
+|範囲 |説明
+
+| 動作
+| Behavior スコープは、テストロジックを実行する前にすべての前提条件を設定します。 +
+このスコープには、モックやスパイが含まれます。
+
+| Execution
+| Execution スクープには、次のスコープを実行する前にすべてのプロセスが終了するまで待機するテストロジックがあります。
+
+| Validation
+| Validation スコープには、Execution スクープの結果に関連するすべての検証があります。 +
+このスコープには、アサーションや検証が含まれます。
+|===
+
+
+これらのすべてのスコープは省略可能です。
+
+[source,xml,linenums]
+----
+
+<munit:test name="exampleTest" description="Test to verify scenario 1">>
+
+     <munit:behavior>
+         <munit-tools:mock-when.../>
+     </munit:behavior>
+
+     <munit:execution>
+         <flow-ref name="exampleFlow"/>
+     </munit:execution>
+
+     <munit:validation>
+         <munit-tools:assert-that ...>
+     </munit:validation>
+ </munit:test>
+
+----
+
+.Studio での MUnit テストの表現
+image::munit-test-concept-9c736.png[munit-test]
+
+
+== MUnit テストの説明属性について
+
+MUnit では、テストの説明を作成する必要があります。 +
+テストするシナリオの内容を反映する有益な説明を作成することが理想的です。この説明は、テストを実行する前のテストコンソールやレポートに表示されます。 +
+正確に内容が反映された説明ほど、読みやすく、エラーのトラブルシューティングが容易になります。
+
+== MUnit テストの無視属性について
+
+テストを停止しなければならない場合があります。どのような原因 (テストの失敗や厄介な副作用) でも関係ありません。 +
+ポイントは、コードをコメントアウトする必要はないということです。
+
+この場合、MUnit では特定のテストを無視できます。
+
+任意のテストを無視するには、ブール型の ignore をテスト定義に追加します。
+
+[source,xml,linenums]
+----
+<munit:test name="my-flow-Test"
+      ignore="true"
+      description="Test to verify scenario 1">
+</munit:test>
+----
+
+[TIP]
+`ignore` の有効な値は、true と false です。この属性が存在しない場合、デフォルトは false です。
+
+.Anypoint Studio では、[Ignore Test (テストを無視)] オプションをオンにできます。
+image::munit-test-concept-de4c9.png[ignore-test]
+
+== MUnit テストのタグ属性について
+
+MUnit では、テストにタグを付けて、特定のタグのテストを実行することもできます。次に例を示します。
+
+[source,xml,linenums]
+----
+<munit:test
+  name="exampleTest"
+  description="A test that works as an example"
+  ignore="true"
+  tags="integration,http" >
+		…
+</munit:test>
+----
+
+
+.Anypoint Studio では、適切な項目でタグを定義できます。
+image::munit-test-concept-c2d9f.png[test-tags]
+
+== MUnit テストの想定エラーおよび例外属性について
+
+テストしているフローまたはサブフローが失敗して、特定のエラー (テスト対象のビジネスロジックによって異なる) をスローするかどうかのみを検証したい場合があります。そのような場合、MUnit にはそのシナリオを検証する簡単な方法が用意されています。 +
+以下のように、属性 expectedErrorType および expectException を追加できます。
+
+[source,xml,linenums]
+----
+<munit:test name="MUnit-test-suite"
+  description="A test that works as an example"
+  expectedErrorType="RETRY_EXHAUSTED"
+  expectedException="java.lang.RuntimeException">
+  ...
+</munit:test>
+----
+
+.Anypoint Studio での視覚表現
+image::munit-test-concept-e7280.png[]
+
+* 属性 expectedErrorType では、テスト対象アプリケーション内で定義されている必要のあるエラー ID を想定しています。
+ この属性では、アプリケーション内で定義されているエラー種別がスローされるかどうかを検証できます。アプリケーションに存在しない errorType を定義すると、テストは実行されません。
++
+[source,xml,linenums]
+----
+<munit:test name="MUnit-test-suite"
+  description="Test Error Type"
+  expectedErrorType="FTP:ILLEGAL_PATH">
+  ...
+</munit:test>
+----
++
+このエラー種別のテストでは、FTP 操作で FTP:ILLEGAL_PATH エラーがスローされることを想定しています。 +
+どのフローも FTP コネクタを使用していない場合、このエラー種別がアプリケーション内で定義されていないため、テストは実行されません。
++
+[TIP]
+Mule Runtime に属する ErrorTypes は、類型化する必要はありません。たとえば、MULE:RETRY_EXHAUSTED は、単純に RETRY_EXHAUSTED として定義できます。
+
+* 属性 expectException では、リテラル例外クラス名 (正規形式) を想定しています。
+ リテラル値を指定する場合、想定される例外の正規クラス名の形式を取る必要があります。その場合、Mule は常に `MuleMessagingException` をスローします。スローされた `MuleMessagingException` の根本原因がまったく同じ種類である場合、MUnit は指定されたクラス名を検証します。
++
+[source,xml,linenums]
+----
+<munit:test name="testExceptions"
+  description="Test Exceptions"
+  expectedException="java.lang.RuntimeException">
+  ...
+</munit:test>
+----
++
+例外を想定するテストを定義したが、何もスローされない場合、テストは即座に失敗します。
+
+
+== 関連情報
+
+* xref:enable-flow-sources-concept.adoc[Enable Flow Sources について]
+* xref:before-after-scopes-concept.adoc[Before/After スコープについて]
+* xref:before-after-scopes-reference.adoc[Before/After スコープリファレンス]
+* xref:munit-test-reference.adoc[MUnit テストリファレンス]

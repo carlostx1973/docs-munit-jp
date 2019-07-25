@@ -1,0 +1,40 @@
+= Assert That イベントプロセッサについて
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:version-info: 2.0 以降
+:keywords: mule, esb, テスト, QA, 品質保証, 検証, 機能テスト, ユニットテスト, ストレステスト
+
+Assert That イベントプロセッサでは、Mule イベントのコンテンツの状態を検証するためにアサーションを実行できます。 +
+このイベントプロセッサは、本番コードの実行後に Muleイベントを検証するために使用できます。
+
+たとえば、ペイロードが特定の値と等しいことをアサートするため、equalTo() マッチャーを使用して Assert-That プロセッサを設定できます。
+
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+  expression="#[payload]"
+  is="#[MunitTools::equalTo('example')]"
+  message="The payload should be ‘example’"/>
+----
+
+または、nullValue() マッチャーを使用してペイロードが null かどうかを確認することもできます。
+
+
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+  expression="#[payload]"
+  is="#[MunitTools::nullValue()]"
+  message="The payload is null"/>
+----
+
+これらのアサーションが失敗すると、プロセッサは `java.lang.AssertionError` をスローします。
+
+== 関連情報
+
+* xref:munit-matchers.adoc[MUnit マッチャーについて]
+* xref:fail-event-processor.adoc[Fail イベントプロセッサについて]
+* xref:set-message-processor.adoc[Set Event プロセッサについて]
+* xref:mock-message-processor.adoc[Mock When イベントプロセッサについて]
+* xref:verify-message-processor.adoc[Verify イベントプロセッサについて]

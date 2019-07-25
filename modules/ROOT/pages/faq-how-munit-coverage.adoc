@@ -1,0 +1,47 @@
+= FAQ: MUnit がカバー率を計算する方法
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+MUnit カバー率モジュールの測定単位はイベントプロセッサです。 +
+MUnit は、MUnit テストの実行結果として実行されたすべてのイベントプロセッサをカウントし、その数をアプリケーション全体を構成するイベントプロセッサの数と比較することで、カバー率を計算します。 +
+レポートは結果情報がフローおよび設定ファイル別に整理されますが、計算は多数のイベントプロセッサに対して実行されます。
+
+原則として、最上位の XML ノード内の各 XML ノードはイベントプロセッサです。それはフロー、サブフロー、キャッチ、バッチ内の各ノードです。 +
+最上位の要素はイベントプロセッサではありません。
+
+XML 構造の性質上、主にコンテナ要素 (子要素を含む XML) の場合にこの定義は混乱を招く可能性があります。 +
+そのような混乱を避けるため、Mule のコンテナである最も一般的なイベントプロセッサと、それらが MUnit カバー率でどのように考慮されるかのリストを次に示します。
+
+
+//_TODO: Commenting Out. check with the team
+* *コンテナ要素と考慮されるイベントプロセッサ*
+// ** Enricher
+// ** Processor chain
+** Choice Router
+** Until Successful
+** First Successful
+** Scatter Gather
+** For Each
+// ** Round Robin
+// ** Splitter
+* *コンテナ要素と考慮されないイベントプロセッサ*
+** Batch Step
+// ** Catch
+// ** Catch ref
+** Error Handlers
+
+//_TODO: Check with QA If these Known Issues are still valid
+// == Known Issues
+//
+// So far we have found only a couple of scenarios where coverage may not be reported properly. +
+// Unfortunately those cases cannot be fixed from MUnit. Issues were created in the proper products in order to address them.
+//
+// In order to make them easy to ID we list the scenarios where coverage might be reported incorrectly:
+//
+// * First Successful component (with no processor chain in all its paths)
+// * Sub-flow containing scatter gather
+
+== 関連情報
+
+* xref:munit-coverage-report.adoc[カバー率レポート]

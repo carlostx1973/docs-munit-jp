@@ -1,0 +1,84 @@
+= MUnit カバー率レポートについて
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+MUnit カバー率機能では、一連の MUnit テストでどれぐらいの Mule アプリケーションが実行されたのかに関するメトリクスが提供されます。 +
+これにより、アプリケーションの品質のメトリクスを得られます。
+
+MUnit カバー率は、実行されるイベントプロセッサの数に基づいています。 +
+MUnit カバー率では、次のメトリクスが提供されます。
+
+* アプリケーション全体のカバー率: 以下の項目の平均。
+* リソースカバー率: src/main/mule の各 Mule 設定ファイルを参照します。各リソースが MUnit カバー率で考慮されます。
+* フローカバー率: フロー、サブフロー、バッチジョブのいずれかのコンポーネントを参照します。
+
+[NOTE]
+カバー率レポートは、EE Runtime でのみ実行されます。アプリケーションに Mule CE Runtime の `requiredProduct` がある場合、「*Coverage is a EE only feature and you've selected to run over CE (カバー率は EE 専用の機能ですが、CE で実行するように選択されています)*」というメッセージが表示されます。EE Runtime に対して実行するには、xref:to-configure-munit-maven-plugin-maven.adoc#to-specify-the-runtime-product[「POM ファイルから MUnit Maven プラグインを設定する方法」]を参照してください。
+
+JSON 形式のカバー率レポートのサンプルを次に示します。 +
+以下のコードのコールアウトを使用して、レポートの各項目を理解してください。
+
+[source,json,linenums]
+----
+{
+ "coverage" : 75.0, //<1>
+ "requiredApplicationCoverage" : 40.0, //<2>
+ "requiredResourceCoverage" : 30.0,
+ "requiredFlowCoverage" : 25.0,
+ "flowCount" : 3, //<3>
+ "processorCount" : 4, //<4>
+ "coveredProcessorCount": 4 //<5>
+ "files" : [ {
+   "name": "sample.xml",
+   "flowCount" : 1, //<6>
+   "coverage" : 100.0, //<7>
+   "processorCount" : 2, //<8>
+   "weight" : 100.0, //<9>
+   "flows" : [ {
+     "name" : "file1Flow1" //<10>
+     "type" : "FLOW", //<11>
+     "coverage" : 100.0, //<12>
+     "processorCount" : 2, //<13>
+     "coveredProcessorCount" : 2
+
+   } ],
+   "name" : "file1.xml" //<14>
+ }, {
+   "coverage" : 50.0,
+   "flowCount" : 2,
+   "messageProcessorCount" : 2,
+   "flows" : [ {
+     "coverage" : 0.0,
+     "messageProcessorCount" : 1,
+     "name" : "file2Flow1"
+   }, {
+     "coverage" : 100.0,
+     "messageProcessorCount" : 1,
+     "name" : "file2Flow2"
+   } ],
+   "name" : "file2.xml"
+ } ]
+}
+----
+<1> アプリケーション全体のカバー率。
+<2> アプリケーション、リソース、フローの必要なカバー率。ユーザが値を設定していない場合、デフォルトの -1 になります。
+<3> アプリケーションのフローの数。
+<4> アプリケーションのイベントプロセッサの数。
+<5> カバーされるイベントプロセッサの数。
+<6> そのファイルのフローの数。
+<7> そのファイルのカバー率。
+<8> そのファイルのイベントプロセッサの数。
+<9> アプリケーション全体のカバー率に対するそのファイルの貢献度。
+<10> フローの名前。
+<11> 最上位要素の種別。 +
+カバー率の最上位要素の他の種別は、エラーハンドラです。
+<12> そのフローのカバー率。
+<13> そのフローのイベントプロセッサの数。
+<14> そのファイルの名前。
+
+
+== 関連情報
+
+* xref:faq-how-munit-coverage.adoc[FAQ: MUnit がカバー率を計算する方法]
+* xref:coverage-studio-concept.adoc[Anypoint Studio のカバー率レポートについて]

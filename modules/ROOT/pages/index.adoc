@@ -1,0 +1,66 @@
+= MUnit について
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:version-info: 2.0 以降
+:keywords: munit, テスト, ユニットテスト
+
+MUnit とは Mule アプリケーションテストフレームワークであり、インテグレーションおよび API の自動テストを簡単に構築できます。完全なインテグレーションおよびユニットテスト機能が提供され、継続的なデプロイメント環境とのインテグレーション用に Maven および Surefire と完全に統合されています。
+
+MUnit を使用して次の操作を実行できます。
+
+* Mule コードを記述してテストを作成する
+* プロセッサをモックする
+* プロセッサをスパイする
+* プロセッサのコールを確認する
+// COMBAK: This will be enable for RC
+// * Create not only unit tests but also integration tests in a local environment -- MUnit allows you to start a local FTP/SFTP or DB server
+* 特定のテストを有効化または無視する
+* テグテスト
+// COMBAK: This will be available for RC
+* Studio でカバー率を視覚的に確認する
+* カバー率レポートを生成する
+// * Debug your tests with Studio
+
+
+MUnit バージョン 2.1 は、4.0 以降のすべての Mule バージョンで動作します。
+
+MUnit は 2 つのメインサブモジュールに分割されます。
+
+* MUnit
+* MUnit ツール
+
+各モジュールには独自の連動関係があります。
+
+.MUnit の連動関係
+[source,xml,linenums]
+----
+<dependency>
+	<groupId>com.mulesoft.munit</groupId>
+	<artifactId>munit-runner</artifactId>
+	<version>2.1.0</version>
+	<classifier>mule-plugin</classifier>
+	<scope>test</scope>
+</dependency>
+----
+
+
+.MUnit ツールの連動関係
+[source,xml,linenums]
+----
+<dependency>
+	<groupId>com.mulesoft.munit</groupId>
+	<artifactId>munit-tools</artifactId>
+	<version>2.1.0</version>
+	<classifier>mule-plugin</classifier>
+	<scope>test</scope>
+</dependency>
+----
+
+
+MUnit は Anypoint Studio と完全に統合されているため、Mule アプリケーションと同様に MUnit テストを作成、設計、および実行できます。
+
+
+== 関連情報
+
+* xref:message-processors.adoc[MUnit イベントプロセッサについて]
