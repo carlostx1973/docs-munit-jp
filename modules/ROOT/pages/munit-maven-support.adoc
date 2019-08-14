@@ -1,0 +1,18 @@
+= MUnit Maven プラグインについて
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:version-info: 2.0 以降
+:keywords: munit, テスト, ユニットテスト
+
+MUnit は、いくつかのモジュールで構成されており、そのすべてが MUnit テストの実行に必要です。
+
+MUnit には、継続的インテグレーション環境の一部として MUnit テストを実行できる Maven プラグインが用意されています。 +
+MUnit Maven プラグインでは、Maven から MUnit テストを実行できます。
+
+
+
+== 関連情報
+
+* xref:to-set-up-munit-maven-plugin.adoc[MUnit Maven プラグインをセットアップする方法]
+* xref:munit-maven-plugin.adoc[MUnit Maven プラグインを操作する方法]

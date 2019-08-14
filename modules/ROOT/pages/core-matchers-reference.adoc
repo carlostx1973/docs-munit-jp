@@ -1,0 +1,119 @@
+= コアマッチャーリファレンス
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+== nullValue()
+
+式が null であることを確認します。
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::nullValue()]"/>
+----
+
+== notNullValue()
+
+式が null ではないことを検査します。
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::notNullValue()]"/>
+----
+
+== withMediaType(String)
+
+式のメディア種別が指定されたものであることを確認します。
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::withMediaType('text/xml')]"/>
+----
+
+== withEncoding(String)
+
+式のエンコーディングが指定されたものであることを確認します。
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::withEncoding('UTF-8')]"/>
+----
+
+== both(, Matcher)
+
+指定された両方のマッチャーが成功することを確認します。
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::both(MunitTools::notNullValue(),MunitTools::equalTo('example'))]"/>
+----
+
+== either(Matcher,Matcher)
+
+少なくとも 1 つのマッチャーが成功することを確認します。
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::either(MunitTools::nullValue(),MunitTools::equalTo(0))]"/>
+----
+
+== not(Matcher)
+
+指定されたマッチャーが成功しないかどうかを確認します。
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::not(MunitTools::equalTo(0))]"/>
+----
+
+== anyOf(Array<Matchers>)
+
+いずれかのマッチャーが成功するかどうかを確認します。
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::anyOf([MunitTools::notNullValue(),MunitTools::withMediaType('text/xml'),MunitTools::isEmptyString()])]"/>
+----
+
+== allOf(Array<Matchers>)
+
+すべてのマッチャーが成功するかどうかを確認します。
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::allOf([MunitTools::notNullValue(),MunitTools::withMediaType('text/xml'),MunitTools::isEmptyString()])]"/>
+----
+
+== 関連情報
+
+* xref:munit-matchers.adoc[MUnit マッチャーについて]
+* xref:string-matchers-reference.adoc[文字列マッチャーリファレンス]
+* xref:comparable-matchers-reference.adoc[比較可能マッチャーリファレンス]
+* xref:iterable-map-matchers-reference.adoc[イテラブルおよびマップマッチャーリファレンス]

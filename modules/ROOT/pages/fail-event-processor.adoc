@@ -1,0 +1,24 @@
+= Fail イベントプロセッサについて
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:version-info: 2.0 以降
+:keywords: mule, esb, テスト, QA, 品質保証, 検証, 機能テスト, ユニットテスト, ストレステスト
+
+Fail イベントプロセッサでは、意図的にテストを失敗させることができます。これは、特定のイベントが発生すべきでないことを検証するのに役立ちます。
+
+[source,xml,linenums]
+----
+<munit-tools:fail
+  message="This should fail"/>
+----
+
+message 項目は省略可能で、アサーションが失敗したときに表示するエラーメッセージを定義します。
+
+== 関連情報
+
+* xref:munit-matchers.adoc[MUnit マッチャーについて]
+* xref:assertion-message-processor.adoc[Assert That イベントプロセッサについて]
+* xref:set-message-processor.adoc[Set Event プロセッサについて]
+* xref:mock-message-processor.adoc[Mock When イベントプロセッサについて]
+* xref:verify-message-processor.adoc[Verify イベントプロセッサについて]

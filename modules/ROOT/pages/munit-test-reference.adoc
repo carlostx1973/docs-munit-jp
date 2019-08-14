@@ -1,0 +1,32 @@
+= MUnit テストリファレンス
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+[cols="30,70"]
+|===
+|名前 |説明
+
+|name (名前)
+|*必須。*​テストの名前を定義します。名前は、テストスイート内で一意である必要があります。
+
+|description (説明)
+|*必須。*​テストするシナリオを説明します。
+
+|ignore
+|テストを無視する必要があるかどうかを定義します。存在しない場合、テストは無視されません。
+
+|tags
+|テストに割り当てるタグのカンマ区切りリスト。
+
+|expectedErrorType
+|このテストの実行後に受け取る必要があるエラー種別を定義します。
+
+|expectException
+|このテストの実行後に受け取る必要がある例外を定義します。
+
+|===
+
+== 関連情報
+
+* xref:munit-test-concept.adoc[Munit テストについて]

@@ -1,0 +1,69 @@
+= FAQ: 親 POM ファイルを処理する方法
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+親 POM ファイルで MUnit プラグインを宣言できます。このファイルの下位のすべての子プロジェクトはこの定義の参照を選択できます。
+
+親 - 子 POM リレーションで MUnit プラグインを適切に使用するには、親 `pom.xml` ファイルの `<pluginManagement>` セクションに MUnit プラグインの宣言を含める必要があります。
+
+[source,xml,linenums]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.1.0</modelVersion>
+
+    <groupId>org.pirate</groupId>
+    <artifactId>pirate-pom</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <properties>
+        <munit.version>2.1.0</munit.version>
+    </properties>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>com.mulesoft.munit.tools</groupId>
+                    <artifactId>munit-maven-plugin</artifactId>
+                    <version>${munit.version}</version>
+                    <executions>
+                        <execution>
+                            <id>test</id>
+                            <phase>test</phase>
+                            <goals>
+                                <goal>test</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                      <coverage>
+                          <runCoverage>true</runCoverage>
+                          <failBuild>false</failBuild>
+                          <requiredApplicationCoverage>0</requiredApplicationCoverage>
+                          <requiredResourceCoverage>0</requiredResourceCoverage>
+                          <requiredFlowCoverage>0</requiredFlowCoverage>
+                          <formats>
+                              <format>console</format>
+                              <format>html</format>
+                          </formats>
+                      </coverage>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>
+----
+
+この pirate-pom プロジェクトは、そのプラグイン管理セクションで MUnit Maven プラグインを宣言し、この親の下位の各子が参照、上書き、または無視を選択できるグローバル設定を定義しています。
+
+== 関連情報
+
+* xref:to-inherit-parent-plugin.adoc[親のプラグインを継承する方法]
+* xref:to-override-parent-plugin.adoc[親のプラグインを上書きする方法]
+* xref:to-ignore-parent-plugin.adoc[親のプラグインを無視する方法]

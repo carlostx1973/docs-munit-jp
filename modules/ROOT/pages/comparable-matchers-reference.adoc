@@ -1,0 +1,178 @@
+= 比較可能マッチャーリファレンス
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+== greaterThan(Comparable)
+
+[NOTE]
+`Comparable` は、相互に比較できるすべての型を表す DataWeave 型です。 +
+許可されるプリミティブは、整数や日付などのプリミティブ値を渡すことができる String、Number、Boolean、DateTime、LocalDateTime、LocalTime、Time、TimeZone です。
+
+式が指定された値より大きいことを確認します。
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::greaterThan(|2017-08-09|)]"/>
+----
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::greaterThan(20)]"/>
+----
+
+
+== greaterThanOrEqualTo(Comparable)
+
+[NOTE]
+`Comparable` は、相互に比較できるすべての型を表す DataWeave 型です。 +
+許可されるプリミティブは、String、Number、Boolean、DateTime、LocalDateTime、LocalTime、Time、TimeZone です。
+
+式が指定された値以上であることを確認します。
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::greaterThanOrEqualTo(20)]"/>
+----
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::greaterThanOrEqualTo(|2017-08-09|)]"/>
+----
+
+== lessThan(Comparable)
+
+[NOTE]
+`Comparable` は、相互に比較できるすべての型を表す DataWeave 型です。 +
+許可されるプリミティブは、String、Number、Boolean、DateTime、LocalDateTime、LocalTime、Time、TimeZone です。
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::lessThan(20)]"/>
+----
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::lessThan(|2017-08-09|)]"/>
+----
+
+== lessThanOrEqualTo(Comparable)
+
+[NOTE]
+`Comparable` は、相互に比較できるすべての型を表す DataWeave 型です。 +
+許可されるプリミティブは、String、Number、Boolean、DateTime、LocalDateTime、LocalTime、Time、TimeZone です。
+
+式が指定された値以下であることを確認します。
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::lessThanOrEqualTo(20)]"/>
+----
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::lessThanOrEqualTo(|2017-08-09|)]"/>
+----
+
+== closeTo(Number, Number)
+
+2 番目の数値をデルタ値として使用して、式が最初の数値に近いことを確認します。 +
+つまり、最初の数値 +/- 2 番目の数値で定義された範囲に式が属することを確認します。
+
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::closeTo(1, 0.01)]"/>
+
+<!--
+  This evaluates if the expression is between 0.99 (1 - 0.01) and 1.01 (1 + 0.01)
+-->
+----
+
+== equalTo(Object)
+
+式が指定された値と等しいことを確認します。
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::equalTo(0)]"/>
+----
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::equalTo('example')]"/>
+----
+
+このマッチャーは Dataweave オブジェクトも受け入れます。
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[{example1: 1 , example2: 2}]"
+is="#[MunitTools::equalTo({example1: 1 , example2: 2})]"/>
+----
+
+マッチャーはキーとそれぞれの値が同じであることを検証します。 +
+マッチャー内の順序は式内の順序と同じである必要があります。そうでないとアサーションは失敗します。
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[{example1: 1 , example2: 2}]"
+is="#[MunitTools::equalTo({example2: 2 , example1: 1})]"/>
+
+<!-- This assertion fails -->
+----
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[[1, 2, 3]]"
+is="#[MunitTools::equalTo([3, 2, 1])]"/>
+
+<!-- This assertion fails -->
+----
+
+== 関連情報
+
+* xref:4.1@mule-runtime::dataweave-types.adoc#dw_type_comparable[DataWeave の比較可能型]
+* xref:munit-matchers.adoc[MUnit マッチャーについて]
+* xref:core-matchers-reference.adoc[コアマッチャーリファレンス]
+* xref:string-matchers-reference.adoc[文字列マッチャーリファレンス]
+* xref:iterable-map-matchers-reference.adoc[イテラブルおよびマップマッチャーリファレンス]

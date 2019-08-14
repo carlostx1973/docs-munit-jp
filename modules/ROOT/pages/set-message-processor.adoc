@@ -1,0 +1,89 @@
+= Set イベントプロセッサ
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:version-info: 2.0 以降
+:keywords: munit, テスト, ユニットテスト
+
+Set Event プロセッサでは、Mule イベントを定義できます。 +
+通常、このメッセージプロセッサを MUnit テストの先頭で使用して、テストするフローに送信する最初のメッセージを定義します。
+
+次の例は、Mule メッセージの簡単なペイロードを定義する方法を示しています。
+
+[source,xml,linenums]
+----
+<munit:set-event cloneOriginalEvent="false">
+  <munit:payload value="#['payload_value']" mediaType="text/plain" encoding="UTF-8"/>
+</munit:set-event>
+----
+
+set-event には cloneOriginalEvent プロパティがあります。true に設定すると、コードで生成されたイベントが複製されます。 +
+デフォルトでは、このプロパティの値は false です。
+
+Set Event プロセッサの payload 要素には次の属性があります。
+
+[%header%autowidth.spread]
+|===
+|属性名 |説明
+
+|`value`
+|ペイロードのメッセージの値を定義します。
+
+|`encoding`
+|メッセージのエンコードを定義します。この属性は省略可能です。
+
+|`mediaType`
+|メッセージの MIME タイプを定義します。この属性は省略可能です。
+
+|===
+
+Set Event プロセッサを使用して、メッセージ属性とイベント変数を定義することもできます。
+
+[source,xml,linenums]
+----
+<munit:set-event cloneOriginalEvent="false">
+  <munit:payload value="#['payload_value']" mediaType="text/plain" encoding="UTF-8"/>
+
+  <munit:attributes value="attribute_value" />
+
+	<munit:variables>
+	  <munit:variable key="variable_key" value="variable_value" mediaType="text/plain" encoding="UTF-8"/>
+	</munit:variables>
+</munit:set-event>
+----
+
+すべてのプロパティに同じ属性セットがあります
+
+[%header%autowidth.spread]
+.プロパティメッセージプロセッサの属性
+|===
+|属性名 |説明
+
+|`key`
+|設定するプロパティのキー。
+
+|`value`
+|プロパティのコンテンツ。
+
+|`encoding`
+|メッセージのエンコードを定義します。この属性は省略可能です。
+
+|`mediaType`
+|メッセージの MIME タイプを定義します。この属性は省略可能です。
+
+|===
+
+スコープごとにテストで必要な数のプロパティを定義できます。
+
+[WARNING]
+--
+​_同じ_​キーを使用して同じスコープ内で 2 つのプロパティを定義した場合、一方のプロパティがもう一方のプロパティを上書きすることになります。
+--
+
+== 関連情報
+
+* xref:assertion-message-processor.adoc[Assert That イベントプロセッサについて]
+* xref:fail-event-processor.adoc[Fail イベントプロセッサについて]
+* xref:run-custom-event-processor.adoc[Run Custom イベントプロセッサについて]
+* xref:mock-message-processor.adoc[Mock When イベントプロセッサについて]
+* xref:verify-message-processor.adoc[Verify イベントプロセッサについて]

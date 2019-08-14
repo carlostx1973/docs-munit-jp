@@ -1,0 +1,95 @@
+= Spy イベントプロセッサについて
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:keywords: munit, テスト, ユニットテスト
+
+Spy プロセッサでは、イベントプロセッサのコール前後で何が起きているかを監視できます。 +
+これにより、たとえば、選択した Mule イベントが、特定のペイロードまたは変数を含む特定のイベントプロセッサに達したことを検証できます。
+
+Spy プロセッサを設定すると、監視されているイベントプロセッサの実行前または後に一連の手順 (通常はアサーションまたは検証) を実行するよう MUnit に指示されます。
+
+次のアプリケーションがあるとします。
+
+[source,xml,linenums]
+----
+<http:listener-config name="HTTP_Listener_config">
+  <http:listener-connection host="0.0.0.0" port="${http.port}" />
+</http:listener-config>
+
+<flow name="testFlow">
+
+  <http:listener config-ref="HTTP_Listener_config" path="/"/>
+  <set-payload value="#['Real_Payload']"/>
+
+</flow>
+----
+
+任意の HTTP リスナを監視するように Spy プロセッサを設定し、コンポーネントに達する前のペイロードが null であり、処理後にペイロードが null 以外になっていることを確認できます。
+
+[source,xml,linenums]
+----
+<munit:test name="suiteTest" >
+
+  <munit:enable-flow-sources >
+    <munit:enable-flow-source value="testFlow" />
+  </munit:enable-flow-sources>
+
+  <munit:behavior >
+
+    <munit-tools:spy processor="http:listener">
+
+      <munit-tools:before-call >
+        <munit-tools:assert-that expression="#[payload]" is="#[MunitTools::nullValue()]"/>
+      </munit-tools:before-call>
+
+      <munit-tools:after-call >
+        <munit-tools:assert-that expression="#[payload]" is="#[MunitTools::notNullValue()]"/>
+      </munit-tools:after-call>
+
+    </munit-tools:spy>
+
+  </munit:behavior>
+
+</munit:test>
+----
+
+また、パスが「/」に設定されている任意の HTTP リスナを監視することもできます。
+
+[source,xml,linenums]
+----
+<munit:test name="suiteTest" >
+
+  <munit:enable-flow-sources >
+    <munit:enable-flow-source value="testFlow" />
+  </munit:enable-flow-sources>
+
+  <munit:behavior >
+
+    <munit-tools:spy processor="http:listener">
+      <munit-tools:with-attributes >
+        <munit-tools:with-attribute attributeName="path" whereValue="/" />
+      </munit-tools:with-attributes>
+
+      <munit-tools:before-call >
+        <munit-tools:assert-that expression="#[payload]" is="#[MunitTools::nullValue()]"/>
+      </munit-tools:before-call>
+
+      <munit-tools:after-call >
+        <munit-tools:assert-that expression="#[payload]" is="#[MunitTools::notNullValue()]"/>
+      </munit-tools:after-call>
+
+    </munit-tools:spy>
+
+  </munit:behavior>
+
+</munit:test>
+----
+
+上記のように、このプロセッサでは、監視するプロセッサをコールする前後でアクションを定義できます。ただし、Spy プロセッサで元の Mule イベントを変更することはできません。 +
+Spy の内部で変数や属性を設定したり、ペイロードを変更したりしても、その変更はプロセッサの外部では存続しません。 +
+一般に Spy プロセッサは検証または確認のために使用する必要があります。
+
+== 関連情報
+
+** xref:message-processors.adoc[MUnit イベントプロセッサについて]

@@ -1,0 +1,66 @@
+= Before/After スコープリファレンス
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+== Before Suite リファレンス
+
+[cols="30,70"]
+|===
+|属性名 |説明
+
+|`name`
+|Before Suite の名前を定義します。この名前は、スイート内で一意である必要があります。
+
+|`description`
+|実行されるアクションを説明します。
+
+|===
+
+
+== After Suite リファレンス
+
+[cols="30,70"]
+|===
+|属性名 |説明
+
+|`name`
+|After Suite の名前を定義します。この名前は、スイート内で一意である必要があります。
+
+|`description`
+|実行されるアクションを説明します。
+
+|===
+
+== Before Test リファレンス
+
+[cols="30,70"]
+|===
+|属性名 |説明
+
+|name (名前)
+|Before Test の名前を定義します。この名前は、スイート内で一意である必要があります。
+
+|description (説明)
+|実行されるアクションを説明します。
+
+|===
+
+
+== After Test リファレンス
+
+[cols="30,70"]
+|===
+|属性名 |説明
+
+|name (名前)
+|After Test の名前を定義します。この名前は、スイート内で一意である必要があります。
+
+|description (説明)
+|実行されるアクションを説明します。
+
+|===
+
+== 関連情報
+
+* xref:before-after-scopes-concept.adoc[Before/After スコープについて]

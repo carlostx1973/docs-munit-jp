@@ -1,0 +1,108 @@
+= 文字列マッチャーリファレンス
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+== containsString(String)
+
+指定した文字列が式に含まれていることを確認します。
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="`#[MunitTools::containsString('example')]`"/>
+----
+
+
+== startsWith(String)
+
+指定した文字列で式が開始されていることを確認します。
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::startsWith('exam')]"/>
+----
+
+== endsWith(String)
+
+指定した文字列で式が終了していることを確認します。
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::endsWith('ple')]"/>
+----
+
+== isEmptyString()
+
+式の長さがゼロであることを確認します。
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::isEmptyString()]"/>
+----
+
+== isEmptyOrNullString()
+
+式が null、または式の長さがゼロであることを確認します。
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::isEmptyOrNullString()]"/>
+----
+
+== equalToIgnoringCase(String)
+
+式が、指定した文字列に等しい (大文字と小文字の区別なし) ことを確認します。
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::equalToIgnoringCase('Example')]"/>
+----
+
+== equalToIgnoringWhiteSpace(String)
+
+式が文字列に等しいことを確認します。ただし、先頭と末尾の空白を無視し、内側にあるすべての空白を 1 文字の空白に縮めます。
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::equalToIgnoringWhiteSpace('An Example')]"/>
+----
+
+== stringContainsInOrder(Array<String>)
+
+指定したすべてのサブ文字列がその順序に関係なく式に含まれていることを確認します。
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::stringContainsInOrder(['an', 'example'])]"/>
+----
+
+== 関連情報
+
+* xref:munit-matchers.adoc[MUnit マッチャーについて]
+* xref:core-matchers-reference.adoc[コアマッチャーリファレンス]
+* xref:comparable-matchers-reference.adoc[比較可能マッチャーリファレンス]
+* xref:iterable-map-matchers-reference.adoc[イテラブルおよびマップマッチャーリファレンス]

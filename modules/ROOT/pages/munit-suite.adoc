@@ -1,0 +1,23 @@
+= MUnit テストスイートについて
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:version-info: 2.0 以降
+:keywords: munit, テスト, ユニットテスト
+
+MUnit フレームワークのベースファイルは、MUnit テストスイートファイルです。これらのファイルは、Mule アプリケーションのフォルダ構造の src/test/munit フォルダにある XML ファイルです。各 MUnit テストスイートファイルは、MUnit テストのコレクションです。これは単独で機能し、他の MUnit テストスイートファイルとは独立して実行できます。
+
+MUnit テストスイートファイルには、次のコンポーネントのいずれかの組み合わせが含まれています。
+
+* Before/After Suite
+* Before/After Test
+* MUnit テスト
+
+バックグラウンドでは、各 MUnit テストスイートファイルと Mule アプリケーションの XML ファイルに違いはありません。 +
+複数の Mule 最上位要素 (フロー、サブフロー、スクリプトなど) を使用できます。
+
+
+== 関連情報
+
+* xref:before-after-scopes-concept.adoc[Before/After スコープについて]
+* xref:munit-test-concept.adoc[Munit テストについて]

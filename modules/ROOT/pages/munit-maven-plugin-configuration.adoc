@@ -1,0 +1,133 @@
+= MUnit Maven プラグイン設定リファレンス
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+MUnit Maven プラグインでは、一連の省略可能なパラメータを設定できます。
+
+//_NOTE: This params are taken from MUnitMojo.java in munit-runtime code.
+
+.Maven プラグインパラメータ
+[%header,cols="3,^2,4"]
+|===
+|名前    |型 | 説明
+
+|argLines
+|List
+|テスト実行で設定する追加の JVM 引数行。
+
+| coverage
+| 設定
+| テスト実行で設定されるカバー率設定。
+
+|dynamicPorts
+|List
+|テスト実行で設定される動的ポート。
+
+|enableSurefireReports
+|boolean (ブール)
+|surefire 形式で MUnit テストの結果を生成するには、値を `true` に設定します。 +
+*Default value: `true`*
+
+| munitTest
+| String (文字列)
+| 実行する MUnit の名前。
+
+| munitTags
+| String (文字列)
+| MUnit タグの名前。これらの名前でタグ付けされたテストのみが実行されます。
+
+| skipMunitTests
+| boolean (ブール)
+| すべての MUnit テストをスキップする場合、`true` に設定します。 +
+*Default value: `false`*
+
+| skipAfterFailure
+| boolean (ブール)
+| 1 つのテストが失敗すると、すべてのテストがスキップされます。 +
+*Default value: `false`*
+
+| munitTestsDirectory
+| ファイル
+| MUnit テストが保存されているディレクトリ。 +
+*Default value: `${project.build.directory}/test-mule/munit`*
+
+
+| runtimeVersion
+| String (文字列)
+| Mule Runtime のバージョン (大文字と小文字は区別される)
+デフォルトでは、mule-artifact.json の pom.xml ファイルで定義されている Mule バージョンで実行されます。
+
+| runtimeProduct
+| String (文字列)
+| Runtime の種別。Community Edition の想定値は MULE、Enterprise Edition の想定値は MULE_EE です。 +
+デフォルトでは、この値は mule-artifact.json ファイルの requiredProduct パラメータから取得されます。
+
+
+|environmentVariables
+|Map (マップ)
+|テスト実行で設定される追加の環境変数。
+
+|redirectTestOutputToFile
+|boolean (ブール)
+|MUnit テストの標準出力をファイルにリダイレクトするには、値を `true` に設定します。 +
+*Default value: `false`*
+
+|systemPropertyVariables
+|Map (マップ)
+|テスト実行で設定されるシステムプロパティ。
+
+|testOutputDirectory
+|ファイル
+|テスト出力が書き込まれるディレクトリ。 +
+*Default value: `${project.build.directory}/munit-reports/output/`*
+
+// THESE PARAMS ARE IN THE CODE, BUT NOT EXPOSED TO THE USER.
+// | surefireReportsFolder
+// | File
+// | Directory where the reports in the surefire format will be written to. +
+// *Default value: `${project.build.directory}/surefire-reports/`*
+
+// | pluginVersion
+// | String
+// | Version of the MUnit Maven Plugin.
+
+// | coverageReportDataFile
+// | File
+// | Directory where the coverage report data lives. +
+// *Default value: `${project.build.directory}/munit-reports/coverage-report.data`*
+
+// | coverageConfigDataFile
+// | File
+// | Directory where the coverage report configuration file lives. +
+// *Default value: ${project.build.directory}/munit-reports/coverage-config.data"*
+
+// |muleWorkingDirectory
+// |File
+// |Directory to be used as Mule working directory. +
+// *Default value: `${project.build.directory}/.mule`*
+
+// | session
+// | MavenSession
+// |
+
+// |classpathDependencyExcludes
+// |List
+// |Dependencies to be excluded from the classpath. Must follow the format `groupId:artifactId`.
+
+// | project
+// | MavenProject
+// | *Required*
+
+// |classpathElements
+// |List
+// |Additional entries to be appended to the classpath.
+
+
+|===
+
+== 関連情報
+
+* xref:to-configure-munit-maven-plugin-maven.adoc[POM ファイルから MUnit Maven プラグインを設定する方法]
+* xref:coverage-maven-concept.adoc[Maven でのカバー率について]
+** xref:faq-how-munit-coverage.adoc[FAQ: MUnit がカバー率を計算する方法]

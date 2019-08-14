@@ -1,0 +1,124 @@
+= イテラブルおよびマップマッチャーリファレンス
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+== everyItem(Matcher)
+
+式のすべての要素が指定されたマッチャーと一致することを確認します。
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::everyItem(MunitTools::notNullValue())]"/>
+----
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::everyItem(MunitTools::startsWith('a'))]"/>
+----
+
+== hasItem(Matcher)
+
+式のいずれかの要素が指定されたマッチャーと一致することを確認します。
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::hasItem(MunitTools::notNullValue())]"/>
+----
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::hasItem(MunitTools::startsWith('a'))]"/>
+----
+
+== hasSize(Matcher)
+
+式のサイズが指定されたマッチャーと一致することを確認します。
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::hasSize(MunitTools::equalTo(5))]"/>
+----
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::hasSize(MUnitTools::greaterThan(2))]"/>
+----
+
+
+== isEmpty()
+
+式が空のコレクションであることを確認します。
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::isEmpty()]"/>
+----
+
+== hasKey(Matcher)
+
+式に指定されたマッチャーと一致するキーが含まれることを確認します。
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::hasKey(MunitTools::equalTo('myKey'))]"/>
+----
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::hasKey(MunitTools::startsWith('a'))]"/>
+----
+
+== hasValue(Matcher)
+
+式に指定されたマッチャーと一致する値が含まれることを確認します。
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::hasValue(MunitTools::equalTo('myValue')]"/>
+----
+
+.例
+[source,xml,linenums]
+----
+<munit-tools:assert-that
+expression="#[payload]"
+is="#[MunitTools::hasValue(MunitTools::startsWith('a'))]"/>
+----
+
+== 関連情報
+
+* xref:munit-matchers.adoc[MUnit マッチャーについて]
+* xref:core-matchers-reference.adoc[コアマッチャーリファレンス]
+* xref:string-matchers-reference.adoc[文字列マッチャーリファレンス]
+* xref:comparable-matchers-reference.adoc[比較可能マッチャーリファレンス]

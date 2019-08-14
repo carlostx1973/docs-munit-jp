@@ -1,0 +1,137 @@
+= Before/After スコープについて
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+他のテストフレームワークと同様に、MUnit にはテストスイートの概念での特定の機能があります。 +
+特に、MUnit テストまたは MUnit スイート全体の実行の前後に実行する処理やアクションを追加できる一連のスコープが提供されます。
+
+* Before および After Suite スコープ。
+* Before および After Test スコープ。
+
+各コンポーネントの ID 領域は、すべてのアプリケーションで一意である必要があります。 +
+つまり、Before および After スコープは、それらの間で同じ名前を共有することも、アプリケーションのフローと同じ名前を持つこともできません。
+
+
+== Before Suite スコープについて
+
+MUnit Before Suite には、スイート全体の前に実行されることを意図したコードが含まれます。
+Before Suite には 1 つの実行ルールがあり、すべてのテストの前に 1 回のみ実行されます。
+
+たとえば、4 つのテストを含む MUnit テストスイートファイルがあるとします。MUnit Before Suite 内のコードは、4 つのテストの前に 1 回のみ実行されます。
+
+[NOTE]
+MUnit テストスイートごとに使用できる Before Suite スコープは 1 つのみです。
+
+.Before Suite の例
+[source,xml,linenums]
+----
+<munit:before-suite name="before-suite" description="Executes a before suite">
+  <!-- some mule code here -->
+</munit:before-suite >
+
+<munit:test name="munit.test" description="Test">
+  <!-- some more mule code here -->
+</munit:test>
+----
+
+`before-suite` は MUnit テストの外側にあります。 +
+MUnit Before Suite が役立つ 1 つの例は、すべてのテストを実行する前にテスト環境をセットアップする必要がある場合です。
+
+Anypoint Studio キャンバスに before-suite を配置すると、スコープは MUnit テストの外側に配置されます。
+
+
+== After Suite スコープについて
+
+MUnit After Suite はスコープです。スイート全体の後に実行されることを意図したコードを含めることができます。 +
+After Suite には 1 つの実行ルールがあり、すべてのテストの後に 1 回のみ実行されます。
+
+たとえば、4 つのテストを含む MUnit テストスイートファイルがあるとします。MUnit After Suite 内のコードは、すべてのテストの後に 1 回のみ実行されます。
+
+[NOTE]
+MUnit テストスイートごとに使用できる After Suite スコープは 1 つのみです。
+
+.After Suite の例
+[source,xml,linenums]
+----
+<munit:before-suite name="before.suite" description="A description">
+  <!-- some mule code here -->
+</munit:before-suite >
+
+<munit:test name="munit.test" description="Test">
+  <!-- some more mule code here -->
+</munit:test>
+
+<munit:after-suite  name="after.suite" description="A description">
+  <!-- some Mule code here -->
+</munit:after-suite >
+----
+
+after-suite は MUnit テストの外側にあります。 +
+MUnit After Suite が役立つ 1 つの例は、テスト全体を実行した後にテスト環境を削除する必要がある場合です。
+
+Anypoint Studio キャンバスに after-suite を配置すると、スコープは MUnit テストの外側に配置されます。
+
+== Before Test スコープについて
+
+MUnit Before Test スコープには、各テストの前に実行されることを意図したコードが含まれます。 +
+各 Before Test スコープは同じ実行ルールに従い、各テストの前に実行されます。
+
+たとえば、4 つのテストを含む MUnit テストスイートファイルがあるとします。MUnit Before Test 内のコードは、4 つのテストそれぞれの前に実行され、4 回実行されます。
+
+[NOTE]
+MUnit テストスイートごとに使用できる Before Test スコープは 1 つのみです。
+
+.Before Test の例
+[source,xml,linenums]
+----
+<munit:before-test name="before.test" description="A description">
+  <!-- some mule code here -->
+</munit:before-test>
+
+<munit:test name="munit.test" description="Test">
+  <!-- some more mule code here -->
+</munit:test>
+----
+
+`before.test` は MUnit テストの外側にあります。 +
+MUnit Before Suite が役立つ 1 つの例は、テスト全体を実行した後にテスト環境をセットアップする必要がある場合です。
+
+
+Anypoint Studio キャンバスに before-test を配置すると、スコープは MUnit テストの外側に配置されます。
+
+== After Test スコープについて
+
+MUnit After Test スコープには、各テストの後に実行されることを意図したコードが含まれます。
+各 After Test スコープは同じ実行ルールに従い、各テストの後に実行されます。
+
+たとえば、4 つのテストを含む MUnit テストスイートファイルがあるとします。MUnit After Test 内のコードは、4 つのテストそれぞれの後に実行され、4 回実行されます。
+
+[NOTE]
+MUnit テストスイートごとに使用できる After Test スコープは 1 つのみです。
+
+.After Test の例
+[source,xml,linenums]
+----
+<munit:before-test name="before.test" description="A description">
+  <!-- some mule code here -->
+</munit:before-test>
+
+<munit:test name="munit.test" description="Test">
+  <!-- some more mule code here -->
+</munit:test>
+
+<munit:after-test  name="after.test" description="A description">
+  <!-- some mule code here -->
+</munit:after-test>
+----
+
+`after.test` は MUnit テストの外側にあります。 +
+MUnit After Test が役立つ 1 つの例は、テスト全体を実行した後にテスト環境を削除する必要がある場合です。
+
+Anypoint Studio キャンバスに after-test を配置すると、スコープは MUnit テストの外側に配置されます。
+
+== 関連情報
+
+** xref:munit-suite.adoc[テストスイートについて]
+*** xref:before-after-scopes-reference.adoc[Before/After スコープリファレンス]

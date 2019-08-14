@@ -1,0 +1,58 @@
+= 親のプラグインを無視する方法
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+親の `pom` ファイルの下の各子プロジェクトで、親のプラグイン管理セクションで参照されているプラグインを無視し、そこで宣言されているプラグインを実装しないように選択できます。
+
+`<plugin>` セクションで Munit プラグインを宣言しないことで、*pirate-pom* で宣言されたプラグインが継承されなくなります。
+
+.MUnit Maven プラグインを継承しない子の POM ファイル
+[source,xml,linenums]
+----
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <parent>
+        <groupId>org.pirate</groupId>
+        <artifactId>pirate-pom</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.mycompany</groupId>
+    <artifactId>ninja</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>mule</packaging>
+    <name>Mule ninja Application</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <mule.version>4.1.0</mule.version>
+        <munit.version>2.1.0</munit.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.mule.tools.maven</groupId>
+                <artifactId>mule-app-maven-plugin</artifactId>
+                <version>${mule.tools.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <copyToAppsDirectory>true</copyToAppsDirectory>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+    </project>
+----
+
+== 関連情報
+
+* xref:faq-working-with-parent-pom.adoc[FAQ: 親 POM ファイルを処理する方法]
+* xref:to-inherit-parent-plugin.adoc[親のプラグインを継承する方法]
+* xref:to-override-parent-plugin.adoc[親のプラグインを上書きする方法]

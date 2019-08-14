@@ -1,0 +1,433 @@
+= POM ファイルから MUnit Maven プラグインを設定する方法
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+== 追加の引数行
+
+テストは新しい JVM で実行されるため、追加の引数行を JVM に指定できます。各引数は個別の `argLine` で指定する必要があります。
+
+.引数行
+[source,xml,linenums]
+----
+<plugins>
+  <plugin>
+    <groupId>com.mulesoft.munit.tools</groupId>
+    <artifactId>munit-maven-plugin</artifactId>
+    <configuration>
+      ...
+      <argLines>
+          <argLine>-XX:MaxPermSize=512m</argLine>
+          <argLine>-Xmx1024m</argLine>
+      </argLines>
+      ...
+    </configuration>
+  </plugin>
+</plugins>
+----
+
+== カバー率を有効にする方法
+
+MUnit カバー率を有効にするには、次の設定を MUnit プラグインに追加します。
+
+.MUnit カバー率 - 最小設定
+[source,xml,linenums]
+----
+<plugins>
+  <plugin>
+    <groupId>com.mulesoft.munit.tools</groupId>
+    <artifactId>munit-maven-plugin</artifactId>
+    <configuration>
+      ...
+      <coverage>
+        <runCoverage>true</runCoverage>   //<1>
+      </coverage>
+      ...
+    </configuration>
+  </plugin>
+</plugins>
+----
+<1> これにより、カバー率機能が有効になります。
+
+== 最小カバー率レベルを設定する方法
+
+MUnit カバー率の機能の 1 つは、特定のカバー率レベルに到達しない場合にビルドを失敗させることです。
+
+ビルドを失敗させるには、次の行を設定に追加します。
+
+.MUnit カバー率 - ビルドの失敗
+[source,xml,linenums]
+----
+<coverage>
+  <runCoverage>true</runCoverage>
+  <failBuild>true</failBuild>       //<1>
+</coverage>
+----
+<1> ​*ビルドの失敗機能*​を有効にします。
+
+次の論理ステップでカバー率レベルを定義します。
+
+== カバー率レポートでフローを無視する方法
+
+.MUnit カバー率 - フローの無視
+[source,xml,linenums]
+----
+<coverage>
+  <ignoreFlows>
+	  <ignoreFlow>the-name-of-your-flow</ignoreFlow>       //<1>
+  </ignoreFlows>
+</coverage>
+----
+<1> 無視するフローの名前。
+
+これはリストのため、必要な数だけフローを無視できます。
+
+== カバー率レポートでファイルを無視する方法
+
+.MUnit カバー率 - ファイルの無視
+[source,xml,linenums]
+----
+<coverage>
+  <ignoreFiles>
+	  <ignoreFile>the-name-of-the-file.xml</ignoreFile>       //<1>
+  </ignoreFiles>
+</coverage>
+----
+<1> 無視するファイルの名前。
+
+これはリストのため、必要な数だけファイルを無視できます。
+
+== 動的ポート
+
+継続的インテグレーション (CI) 環境で Mule アプリケーションをテストする場合、次のシナリオが発生することがあります。
+
+`Your application tries to open a specific port. The port is already in use. The application fails with a port binding exception.`
+
+この問題を容易に解決する方法は、アプリケーションで空きポートを使用することです。
+MUnit Maven プラグインには、これを実現する機能が組み込まれています。
+
+`MUnit Dynamic Ports` は、Mule アプリケーションのテストを開始する前に、バインドされていないポートを探して予約するよう MUnit Maven プラグインに指示します。選択された各ポートは、設定に示されている名前でシステムプロパティに配置されます。
+その後、アプリケーションはプレースホルダを使用してポート番号を取得できます。
+
+TIP: プラグインにより選択されるポートは、`[40000,50000)` の範囲から取得されます。
+
+[CAUTION]
+--
+動的ポート機能は MUnit Maven プラグインの一部としてのみ使用できます。 +
+Anypoint Studio 内からテストを実行する場合、この機能が動作することは期待できません。
+--
+
+=== 動的ポートの有効化
+
+この機能を有効にするには、次のコードを MUnit Maven プラグインの `configuration` セクションに追加する必要があります。
+
+.動的ポートの設定
+[source,xml,linenums]
+----
+<plugins>
+  <plugin>
+    <groupId>com.mulesoft.munit.tools</groupId>
+    <artifactId>munit-maven-plugin</artifactId>
+    <configuration>
+    ...
+    <dynamicPorts>
+      <dynamicPort>a.dynamic.port</dynamicPort>
+    </dynamicPorts>
+    ...
+    </configuration>
+  </plugin>
+</plugins>
+----
+
+アプリケーションに `${http.port}` プレースホルダが含まれる場合、設定は次のようになります。
+
+.例
+[source,xml,linenums]
+----
+<dynamicPorts>
+  <dynamicPort>http.port</dynamicPort>
+</dynamicPorts>
+----
+
+==== アプリケーションの準備
+
+プレースホルダでは、ポートを使用するアプリケーションの一部をパラメータ化する必要があります。 +
+たとえば、Mule アプリケーションで HTTP トラフィックをリスンする必要があるとします。これを行うには、次の設定を提供する必要があります。
+
+.簡単な HTTP アプリケーション
+[source,xml,linenums]
+----
+<http:listener-config name="HTTP_Listener_config">
+  <http:listener-connection host="0.0.0.0" port="8081" />
+</http:listener-config>
+
+<flow name="httpFlow">
+  <http:listener path="/" config-ref="HTTP_Listener_config"/>
+</flow>
+----
+
+これで、このアプリケーションはポート `8081` で常にリスンします。これを動的に行うには、次のように変更します。
+
+.動的ポートを使用する簡単な HTTP アプリケーション
+[source,xml,linenums]
+----
+<http:listener-config name="HTTP_Listener_config">
+  <http:listener-connection host="0.0.0.0" port="${http.port}"/> //<1>
+</http:listener-config>
+
+<flow name="httpFlow">
+  <http:listener path="/" config-ref="HTTP_Listener_config"/>
+</flow>
+----
+<1> プレースホルダ `${http.port}` に注意してください。
+
+アプリケーションをこのようにコーディングし、動的ポートの設定を適用したら、アプリケーションは、開始する各実行で異なるポートをリスンします。
+
+== Surefire レポートの有効化
+
+MUnit には Surefire のサポートが組み込まれています。これに追加の設定は必要ありませんが、必要でない場合はこれを無効にできます。
+
+
+//_TODO: Where? Properties? pluginConfig?
+.Surefire レポートの無効化
+[source,xml,linenums]
+----
+<enableSurefireReports>false</enableSurefireReports>
+----
+
+レポートは `${project.build.directory}/surefire-reports` の下にあります。
+
+デフォルトでは、これは `true` に設定されます。
+
+== 特定のテストを実行する方法
+
+[source,xml,linenums]
+----
+<plugins>
+  <plugin>
+      <groupId>com.mulesoft.munit.tools</groupId>
+      <artifactId>munit-maven-plugin</artifactId>
+      <configuration>
+      ...
+      <munitTest>example-MunitTest-suite.xml</munitTest>
+      ...
+    </configuration>
+  </plugin>
+</plugins>
+----
+
+== 特定のタグを使用してテストを実行する方法
+
+[source,xml,linenums]
+----
+<plugins>
+  <plugin>
+      <groupId>com.mulesoft.munit.tools</groupId>
+      <artifactId>munit-maven-plugin</artifactId>
+      <configuration>
+      ...
+      <munitTags>exampleMunitTag</munitTags>
+      ...
+    </configuration>
+  </plugin>
+</plugins>
+----
+
+複数のタグをカンマで区切って指定できます。
+
+== MUnit テストをスキップする方法
+
+[source,xml,linenums]
+----
+<plugins>
+  <plugin>
+      <groupId>com.mulesoft.munit.tools</groupId>
+      <artifactId>munit-maven-plugin</artifactId>
+      <configuration>
+      ...
+      <skipMunitTests>True</skipMunitTests>
+      ...
+    </configuration>
+  </plugin>
+</plugins>
+----
+
+
+// CONFIGURATION
+
+== 1 つのスイートが失敗した場合にテストをスキップする方法
+
+MUnit では、1 つのテストスイートが失敗した場合に残りのテストをスキップすることができます。 +
+指定しない場合、この値はデフォルトで false になります。
+
+[source,xml,linenums]
+----
+<plugins>
+  <plugin>
+      <groupId>com.mulesoft.munit.tools</groupId>
+      <artifactId>munit-maven-plugin</artifactId>
+      <configuration>
+      ...
+      <skipAfterFailure>true</skipAfterFailure>
+      ...
+    </configuration>
+  </plugin>
+</plugins>
+----
+
+== ランタイムバージョンを指定する方法
+
+MUnit では、テストするアプリケーションをどのランタイムバージョンで実行するかを指定できます。
+
+[source,xml,linenums]
+----
+<plugins>
+  <plugin>
+    <groupId>com.mulesoft.munit.tools</groupId>
+    <artifactId>munit-maven-plugin</artifactId>
+    <configuration>
+      ...
+      <runtimeVersion>1.2.3</runtimeVersion>
+      ...
+    </configuration>
+  </plugin>
+</plugins>
+----
+
+== ランタイム製品を指定する方法
+
+MUnit では、テストするアプリケーションをどのランタイムの種別で実行するかを指定できます。 +
+指定できる値は、Community Edition 用の MULE と Enterprise Edition 用の MULE_EE の 2 つです。
+
+[source,xml,linenums]
+----
+<plugins>
+  <plugin>
+    <groupId>com.mulesoft.munit.tools</groupId>
+    <artifactId>munit-maven-plugin</artifactId>
+    <configuration>
+      ...
+      <runtimeProduct>MULE</runtimeProduct>
+      ...
+    </configuration>
+  </plugin>
+</plugins>
+----
+
+== 環境変数
+
+テスト実行時に追加の環境変数を設定するには、各環境変数をそれぞれのキーと値を使用して指定できます。
+
+.追加の環境変数
+[source,xml,linenums]
+----
+<plugins>
+  <plugin>
+    <groupId>com.mulesoft.munit.tools</groupId>
+    <artifactId>munit-maven-plugin</artifactId>
+    <configuration>
+      ...
+      <environmentVariables>
+        <MY_ENV>exampleValue</MY_ENV>
+        <MY_OTHER_ENV>val2</MY_OTHER_ENV>
+      </environmentVariables>
+      ...
+    </configuration>
+  </plugin>
+</plugins>
+----
+
+環境変数を使用して、(上記の例を使用して) `${MY_ENV}` などのプレースホルダを置き換えることができます。
+
+== ファイルへのテスト出力のリダイレクト
+
+複数のテストを実行すると、ビルド出力が非常に複雑になり、読みづらくなる可能性があります。各テストスイートの出力をファイルにリダイレクトすることをお勧めします。これにより、ビルド出力に残っているものがテスト結果になり、各テストスイートの標準出力は、それぞれのファイルで確認できます。
+
+これらのファイルは `testOutputDirectory` フォルダに、`munit.${suiteName}-output.txt` の命名規則に従って配置されます。`suiteName` は MUnit テストフォルダを基準とする XML ファイルの相対的な名前を表します。
+
+特定のスイートに属さないテスト実行の出力は、ビルド出力をクリーンな状態に維持するため印刷されませんが、Maven を​_デバッグ_​モードで実行することで、これを有効にできます。
+
+.ファイルへのテスト出力のリダイレクト
+[source,xml,linenums]
+----
+<plugins>
+  <plugin>
+    <groupId>com.mulesoft.munit.tools</groupId>
+    <artifactId>munit-maven-plugin</artifactId>
+    <configuration>
+      ...
+      <redirectTestOutputToFile>true</redirectTestOutputToFile>
+      ...
+    </configuration>
+  </plugin>
+</plugins>
+----
+
+デフォルトでは、これは `false` に設定されます。
+
+== システムプロパティ変数
+
+MUnit テストを正常に実行するために必要な特定のシステム変数を定義できます。次の例は、これを送信する方法を示しています。
+
+.システムプロパティ変数の設定
+[source,xml,linenums]
+----
+<plugins>
+  <plugin>
+    <groupId>com.mulesoft.munit.tools</groupId>
+    <artifactId>munit-maven-plugin</artifactId>
+    <configuration>
+      ...
+      <systemPropertyVariables>
+        <my.property.key>my.property.value</my.property.key>
+      </systemPropertyVariables>
+      ...
+    </configuration>
+  </plugin>
+</plugins>
+----
+
+[TIP]
+====
+実行コンテキストに応じて、システムプロパティの値が変わる場合があります。このようなプロパティを参照する場合、その値を上書きしてテストの再現性を強化することをお勧めします。
+
+これを行うには、Maven を使用して MUnit を実行するときに ­`-D` 引数を使用できます。 +
+`-D` 引数と共に渡された変数は、他のどのプロパティよりも優先されます。
+
+次に例を示します。
+
+`-Dmy.property.key=my.property.another.value`
+====
+
+== テスト出力ディレクトリ
+
+テスト出力ファイルを作成する場所を選択できます。
+指定するパスを絶対パスとしたり、Maven プレースホルダとして記述したりできます。
+
+.絶対パスを使用したテスト出力ディレクトリ
+[source,xml,linenums]
+----
+<plugins>
+  <plugin>
+    <groupId>com.mulesoft.munit.tools</groupId>
+    <artifactId>munit-maven-plugin</artifactId>
+    <configuration>
+      ...
+      <testOutputDirectory>/my/absolute/path</testOutputDirectory>
+      ...
+    </configuration>
+  </plugin>
+</plugins>
+----
+
+.Maven プレースホルダを使用したテスト出力ディレクトリ
+[source,xml,linenums]
+----
+<testOutputDirectory>${project.build.directory}/my/output/folder</testOutputDirectory>
+----
+
+デフォルトでは、ファイルは `${project.build.directory}/munit-reports/output/` に作成されます。
+
+== 関連情報
+
+* xref:munit-maven-plugin-configuration.adoc[Maven プラグイン設定リファレンス]
