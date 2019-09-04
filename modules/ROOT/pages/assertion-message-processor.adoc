@@ -29,7 +29,7 @@ Assert That イベントプロセッサでは、Mule イベントのコンテン
   message="The payload is null"/>
 ----
 
-これらのアサーションが失敗すると、プロセッサは `java.lang.AssertionError` をスローします。
+これらのアサーションが失敗すると、プロセッサは ​`java.lang.AssertionError`​ をスローします。
 
 == 関連情報
 

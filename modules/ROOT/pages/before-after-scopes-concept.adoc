@@ -35,7 +35,7 @@ MUnit テストスイートごとに使用できる Before Suite スコープは
 </munit:test>
 ----
 
-`before-suite` は MUnit テストの外側にあります。 +
+​`before-suite`​ は MUnit テストの外側にあります。 +
 MUnit Before Suite が役立つ 1 つの例は、すべてのテストを実行する前にテスト環境をセットアップする必要がある場合です。
 
 Anypoint Studio キャンバスに before-suite を配置すると、スコープは MUnit テストの外側に配置されます。
@@ -94,8 +94,8 @@ MUnit テストスイートごとに使用できる Before Test スコープは 
 </munit:test>
 ----
 
-`before.test` は MUnit テストの外側にあります。 +
-MUnit Before Suite が役立つ 1 つの例は、テスト全体を実行した後にテスト環境をセットアップする必要がある場合です。
+​`before.test`​ は MUnit テストの外側にあります。 +
+MUnit Before Test が役立つ 1 つの例は、各テストを実行する前に、各テストでファイルを作成したり、コンシュームされる変数を設定したりするなどのテスト環境をセットアップする必要がある場合です。
 
 
 Anypoint Studio キャンバスに before-test を配置すると、スコープは MUnit テストの外側に配置されます。
@@ -126,12 +126,12 @@ MUnit テストスイートごとに使用できる After Test スコープは 1
 </munit:after-test>
 ----
 
-`after.test` は MUnit テストの外側にあります。 +
+​`after.test`​ は MUnit テストの外側にあります。 +
 MUnit After Test が役立つ 1 つの例は、テスト全体を実行した後にテスト環境を削除する必要がある場合です。
 
 Anypoint Studio キャンバスに after-test を配置すると、スコープは MUnit テストの外側に配置されます。
 
 == 関連情報
 
-** xref:munit-suite.adoc[テストスイートについて]
-*** xref:before-after-scopes-reference.adoc[Before/After スコープリファレンス]
+** ​xref:munit-suite.adoc[テストスイートについて]​
+*** ​xref:before-after-scopes-reference.adoc[Before/After スコープリファレンス]​

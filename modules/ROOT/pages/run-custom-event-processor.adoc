@@ -22,8 +22,8 @@ public class CustomAssertion implements MunitAssertion {
 
 }
 ----
-<1> インターフェースに 1 つのメソッドのみを実装します: `public void execute(TypedValue expression, Object params) throws AssertionError`
-<2> カスタムロジックを実行します。この場合は、メッセージのペイロードが `Hello World` であることを検証します。
+<1> インターフェースに 1 つのメソッドのみを実装します: ​`public void execute(TypedValue expression, Object params) throws AssertionError`​
+<2> カスタムロジックを実行します。この場合は、メッセージのペイロードが ​`Hello World`​ であることを検証します。
 
 次に、Run Custom イベントプロセッサを使用してこれを実行します。
 

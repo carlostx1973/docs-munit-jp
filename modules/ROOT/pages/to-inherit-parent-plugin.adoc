@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-子の POM ファイルで MUnit プラグインを継承するには、そのプラグインを各子の ​_POM_​ ファイルの ​_<plugin>_​ セクションで個別に参照する必要があります。
+子の POM ファイルで MUnit プラグインを継承するには、そのプラグインを各子の ​​_POM_​​ ファイルの ​​_<plugin>_​​ セクションで個別に参照する必要があります。
 
 .子の POM ファイルのサンプル
 [source,xml,linenums]
@@ -43,7 +43,7 @@ endif::[]
     </project>
 ----
 
-この簡単なサンプルでは、​_pirate-pom_​ ファイルをその親として参照し、次に `<plugin>` セクションで MUnit プラグインを宣言しています。MUnit プラグイン設定が親の `<pluginManagement>` セクションから継承されるため、MUnit プラグインの `<version>` は指定されていません。
+この簡単なサンプルでは、​​_pirate-pom_​​ ファイルをその親として参照し、次に ​`<plugin>`​ セクションで MUnit プラグインを宣言しています。MUnit プラグイン設定が親の ​`<pluginManagement>`​ セクションから継承されるため、MUnit プラグインの ​`<version>`​ は指定されていません。
 
 == 関連情報
 

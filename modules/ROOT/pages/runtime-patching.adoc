@@ -4,11 +4,11 @@ include::_attributes.adoc[]
 endif::[]
 
 MUnit でのパッチの適用方法は Mule Runtime のパッチの適用方法とは異なります。 +
-MUnit は埋め込みコンテナを使用して動作します。この埋め込みコンテナでは、特定のバージョンに基づいてコンテナを開始するために必要なすべての連動関係をダウンロードされます。`4.1.2-hf2` など、パッチ適用済みバージョンを使用するには、そのバージョンに対して MUnit を実行するように明確に指示する必要があります。この操作は Maven と Studio の両方から行うことができます。
+MUnit は埋め込みコンテナを使用して動作します。この埋め込みコンテナでは、特定のバージョンに基づいてコンテナを開始するために必要なすべての連動関係をダウンロードされます。​`4.1.2-hf2`​ など、パッチ適用済みバージョンを使用するには、そのバージョンに対して MUnit を実行するように明確に指示する必要があります。この操作は Maven と Studio の両方から行うことができます。
 
 == Maven からの MUnit のパッチ適用
 
-デフォルトでは、MUnit は、`mule-artifact.json` ファイルの ​_minMuleVersion_​ に対応するランタイムを使用して実行されます。munit-maven-plugin 設定の ​_runtimeVersion_​ 属性を使用して、このバージョンを上書きできます。
+デフォルトでは、MUnit は、​`mule-artifact.json`​ ファイルの ​​_minMuleVersion_​​ に対応するランタイムを使用して実行されます。munit-maven-plugin 設定の ​​_runtimeVersion_​​ 属性を使用して、このバージョンを上書きできます。
 
 [source,xml,linenums]
 ----
@@ -36,13 +36,13 @@ MUnit は埋め込みコンテナを使用して動作します。この埋め�
 
 デフォルトでは、MUnit はプロジェクトのサーバのバージョンを使用して、Studio で実行されます。MUnit の [Run Configuration (設定の実行)] で、パッチ適用済みランタイムバージョンを指定して、このバージョンを上書きできます。
 
-. 上部のメニューバーで *[Run (実行)]*、*[Run Configurations… (設定の実行...)]* の順に移動します。
+. 上部のメニューバーで ​*[Run (実行)]*​、​*[Run Configurations… (設定の実行...)]*​ の順に移動します。
 . [MUnit] の下の MUnit テストファイルを選択します。
-. *[Advanced Settings (詳細設定)]* の下の *[Mule Runtime Version (Mule Runtime バージョン)]* 項目に、使用する MUnit のパッチ適用済みバージョンを入力します。
+. ​*[Advanced Settings (詳細設定)]*​ の下の ​*[Mule Runtime Version (Mule Runtime バージョン)]*​ 項目に、使用する MUnit のパッチ適用済みバージョンを入力します。
 +
 image::runtime-patching-7d385.png[]
 +
- 「Maven からの MUnit のパッチ適用」セクションで示されているように pom で runtimeVersion 属性をすでに設定している場合、*[Load configuration from pom file (pom ファイルから設定を読み込む)]* オプションをクリックし、そのバージョンを *[Mule Runtime Version (Mule Runtime バージョン)]* 項目に自動的に読み込むことができます。
+ 「Maven からの MUnit のパッチ適用」セクションで示されているように pom で runtimeVersion 属性をすでに設定している場合、​*[Load configuration from pom file (pom ファイルから設定を読み込む)]*​ オプションをクリックし、そのバージョンを ​*[Mule Runtime Version (Mule Runtime バージョン)]*​ 項目に自動的に読み込むことができます。
 
 
 == 関連情報

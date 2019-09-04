@@ -16,7 +16,7 @@ MUnit テストは、3 つのスコープに分かれています。
 このスコープには、モックやスパイが含まれます。
 
 | Execution
-| Execution スクープには、次のスコープを実行する前にすべてのプロセスが終了するまで待機するテストロジックがあります。
+| Execution スコープには、次のスコープを実行する前にすべてのプロセスが終了するまで待機するテストロジックがあります。
 
 | Validation
 | Validation スコープには、Execution スクープの結果に関連するすべての検証があります。 +
@@ -74,7 +74,7 @@ MUnit では、テストの説明を作成する必要があります。 +
 ----
 
 [TIP]
-`ignore` の有効な値は、true と false です。この属性が存在しない場合、デフォルトは false です。
+​`ignore`​ の有効な値は、true と false です。この属性が存在しない場合、デフォルトは false です。
 
 .Anypoint Studio では、[Ignore Test (テストを無視)] オプションをオンにできます。
 image::munit-test-concept-de4c9.png[ignore-test]
@@ -128,14 +128,14 @@ image::munit-test-concept-e7280.png[]
 </munit:test>
 ----
 +
-このエラー種別のテストでは、FTP 操作で FTP:ILLEGAL_PATH エラーがスローされることを想定しています。 +
+このエラー種別のテストでは、FTP 操作で FTP:​ILLEGAL_PATH​ エラーがスローされることを想定しています。 +
 どのフローも FTP コネクタを使用していない場合、このエラー種別がアプリケーション内で定義されていないため、テストは実行されません。
 +
 [TIP]
-Mule Runtime に属する ErrorTypes は、類型化する必要はありません。たとえば、MULE:RETRY_EXHAUSTED は、単純に RETRY_EXHAUSTED として定義できます。
+Mule Runtime に属する ErrorTypes は、類型化する必要はありません。たとえば、MULE:​RETRY_EXHAUSTED​ は、単純に ​RETRY_EXHAUSTED​ として定義できます。
 
 * 属性 expectException では、リテラル例外クラス名 (正規形式) を想定しています。
- リテラル値を指定する場合、想定される例外の正規クラス名の形式を取る必要があります。その場合、Mule は常に `MuleMessagingException` をスローします。スローされた `MuleMessagingException` の根本原因がまったく同じ種類である場合、MUnit は指定されたクラス名を検証します。
+ リテラル値を指定する場合、想定される例外の正規クラス名の形式を取る必要があります。その場合、Mule は常に ​`MuleMessagingException`​ をスローします。スローされた ​`MuleMessagingException`​ の根本原因がまったく同じ種類である場合、MUnit は指定されたクラス名を検証します。
 +
 [source,xml,linenums]
 ----

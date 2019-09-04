@@ -28,7 +28,7 @@ mvn clean test
     <scope>provided</scope>
 </dependency>
 ----
-. `mvn test` ではなく `mvn install` を実行します。
+. ​`mvn test`​ ではなく ​`mvn install`​ を実行します。
 +
 [source,console]
 ----
@@ -39,7 +39,7 @@ mvn clean install
 
 特定のテストスイートに属するテストのみを実行するように MUnit Maven プラグインに指示できます。
 
-これを行うには、プロパティ `munit.test` を使用します。
+これを行うには、プロパティ ​`munit.test`​ を使用します。
 
 [source,console]
 ----
@@ -61,14 +61,14 @@ mvn clean test -Dmunit.test=<regex-test-suite>
     <scope>provided</scope>
 </dependency>
 ----
-. `mvn test` ではなく `mvn install` を実行します。
+. ​`mvn test`​ ではなく ​`mvn install`​ を実行します。
 +
 [source,console]
 ----
 mvn clean install -Dmunit.test=<regex-test-suite>
 ----
 
-プロパティ `munit.test` は、正規表現に対応しています。この式は、MUnit テストスイートファイルの名前に適用されます。正規表現の言語は Java 実装です。 +
+プロパティ ​`munit.test`​ は、正規表現に対応しています。この式は、MUnit テストスイートファイルの名前に適用されます。正規表現の言語は Java 実装です。 +
 このパスは、src/test/munit に対して相対的です。
 
 次に、有効な例を示します。
@@ -81,7 +81,7 @@ mvn clean test -Dmunit.test=.*my-test.*
 
 == 特定の MUnit テストを実行する方法 (MUnit Maven プラグイン)
 
-1 つのテストスイートを実行するように MUnit に指示する場合と同じ方法で、テストスイート内の特定のテストを実行するように MUnit に指示できます。これを行うには、プロパティ `munit.test` を再度利用します。ただし、1 つの追加部分があります。
+1 つのテストスイートを実行するように MUnit に指示する場合と同じ方法で、テストスイート内の特定のテストを実行するように MUnit に指示できます。これを行うには、プロパティ ​`munit.test`​ を再度利用します。ただし、1 つの追加部分があります。
 
 [source,console]
 ----
@@ -103,14 +103,14 @@ mvn clean test -Dmunit.test=<regex-test-suite>#<regex-test-name>
     <scope>provided</scope>
 </dependency>
 ----
-. `mvn test` ではなく `mvn install` を実行します。
+. ​`mvn test`​ ではなく ​`mvn install`​ を実行します。
 +
 [source,console]
 ----
 mvn clean install -Dmunit.test=<regex-test-suite>#<regex-test-name>
 ----
 
-特殊文字 `#` が追加されています。その右側には、テスト名を入力する必要があります。これも、正規表現に対応しています。式は、MUnit テストの属性 `name` に適用されます。
+特殊文字 ​`#`​ が追加されています。その右側には、テスト名を入力する必要があります。これも、正規表現に対応しています。式は、MUnit テストの属性 ​`name`​ に適用されます。
 
 次に、有効な例を示します。
 [source,console]
@@ -120,7 +120,7 @@ mvn clean test -Dmunit.test=.*my-test.*#.*test-scenario-1.*
 
 [TIP]
 --
-正規表現に一致しない MUnit テストスイート内のテストは、*ignored* フラグが設定されます。
+正規表現に一致しない MUnit テストスイート内のテストは、​*ignored*​ フラグが設定されます。
 --
 
 == 特定のタグを使用してテストを実行する方法 (MUnit Maven プラグイン)
@@ -147,7 +147,7 @@ mvn clean test -Dmunit.tags=<munit-tag>
     <scope>provided</scope>
 </dependency>
 ----
-. `mvn test` ではなく `mvn install` を実行します。
+. ​`mvn test`​ ではなく ​`mvn install`​ を実行します。
 +
 [source,console]
 ----
@@ -157,7 +157,7 @@ mvn clean install -Dmunit.tags=<munit-tag>
 
 == すべてのテストをスキップする方法 (MUnit Maven プラグイン)
 
-アプリケーションの構築時に、テストの実行を回避できます。MUnit は Maven と同じメカニズムを利用しているため、テストをスキップする場合、パラメータ `skipTests` を利用できます。
+アプリケーションの構築時に、テストの実行を回避できます。MUnit は Maven と同じメカニズムを利用しているため、テストをスキップする場合、パラメータ ​`skipTests`​ を利用できます。
 
 .テストのスキップの例
 [source,console]
@@ -180,7 +180,7 @@ mvn clean package -DskipTests
     <scope>provided</scope>
 </dependency>
 ----
-. `mvn test` ではなく `mvn install` を実行します。
+. ​`mvn test`​ ではなく ​`mvn install`​ を実行します。
 +
 [source,console]
 ----

@@ -14,7 +14,7 @@ MUnit カバー率では、次のメトリクスが提供されます。
 * フローカバー率: フロー、サブフロー、バッチジョブのいずれかのコンポーネントを参照します。
 
 [NOTE]
-カバー率レポートは、EE Runtime でのみ実行されます。アプリケーションに Mule CE Runtime の `requiredProduct` がある場合、「*Coverage is a EE only feature and you've selected to run over CE (カバー率は EE 専用の機能ですが、CE で実行するように選択されています)*」というメッセージが表示されます。EE Runtime に対して実行するには、xref:to-configure-munit-maven-plugin-maven.adoc#to-specify-the-runtime-product[「POM ファイルから MUnit Maven プラグインを設定する方法」]を参照してください。
+カバー率レポートは、EE Runtime でのみ実行されます。アプリケーションに Mule CE Runtime の ​`requiredProduct`​ がある場合、「​*Coverage is a EE only feature and you've selected to run over CE (カバー率は EE 専用の機能ですが、CE で実行するように選択されています)*​」というメッセージが表示されます。EE Runtime に対して実行するには、​xref:to-configure-munit-maven-plugin-maven.adoc#to-specify-the-runtime-product[「POM ファイルから MUnit Maven プラグインを設定する方法」]​を参照してください。
 
 JSON 形式のカバー率レポートのサンプルを次に示します。 +
 以下のコードのコールアウトを使用して、レポートの各項目を理解してください。

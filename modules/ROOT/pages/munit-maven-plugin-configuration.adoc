@@ -26,8 +26,8 @@ MUnit Maven プラグインでは、一連の省略可能なパラメータを�
 
 |enableSurefireReports
 |boolean (ブール)
-|surefire 形式で MUnit テストの結果を生成するには、値を `true` に設定します。 +
-*Default value: `true`*
+|surefire 形式で MUnit テストの結果を生成するには、値を ​`true`​ に設定します。 +
+​*デフォルト値: `true`*​
 
 | munitTest
 | String (文字列)
@@ -39,18 +39,18 @@ MUnit Maven プラグインでは、一連の省略可能なパラメータを�
 
 | skipMunitTests
 | boolean (ブール)
-| すべての MUnit テストをスキップする場合、`true` に設定します。 +
-*Default value: `false`*
+| すべての MUnit テストをスキップする場合、​`true`​ に設定します。 +
+​*デフォルト値: `false`*​
 
 | skipAfterFailure
 | boolean (ブール)
 | 1 つのテストが失敗すると、すべてのテストがスキップされます。 +
-*Default value: `false`*
+​*デフォルト値: `false`*​
 
 | munitTestsDirectory
 | ファイル
 | MUnit テストが保存されているディレクトリ。 +
-*Default value: `${project.build.directory}/test-mule/munit`*
+​*デフォルト値: `${project.build.directory}/test-mule/munit`*​
 
 
 | runtimeVersion
@@ -60,7 +60,7 @@ MUnit Maven プラグインでは、一連の省略可能なパラメータを�
 
 | runtimeProduct
 | String (文字列)
-| Runtime の種別。Community Edition の想定値は MULE、Enterprise Edition の想定値は MULE_EE です。 +
+| Runtime の種別。Community Edition の想定値は MULE、Enterprise Edition の想定値は ​MULE_EE​ です。 +
 デフォルトでは、この値は mule-artifact.json ファイルの requiredProduct パラメータから取得されます。
 
 
@@ -70,8 +70,8 @@ MUnit Maven プラグインでは、一連の省略可能なパラメータを�
 
 |redirectTestOutputToFile
 |boolean (ブール)
-|MUnit テストの標準出力をファイルにリダイレクトするには、値を `true` に設定します。 +
-*Default value: `false`*
+|MUnit テストの標準出力をファイルにリダイレクトするには、値を ​`true`​ に設定します。 +
+​*デフォルト値: `false`*​
 
 |systemPropertyVariables
 |Map (マップ)
@@ -80,13 +80,13 @@ MUnit Maven プラグインでは、一連の省略可能なパラメータを�
 |testOutputDirectory
 |ファイル
 |テスト出力が書き込まれるディレクトリ。 +
-*Default value: `${project.build.directory}/munit-reports/output/`*
+​*デフォルト値: `${project.build.directory}/munit-reports/output/`*​
 
 // THESE PARAMS ARE IN THE CODE, BUT NOT EXPOSED TO THE USER.
 // | surefireReportsFolder
 // | File
 // | Directory where the reports in the surefire format will be written to. +
-// *Default value: `${project.build.directory}/surefire-reports/`*
+// *デフォルト値: `${project.build.directory}/surefire-reports/`*
 
 // | pluginVersion
 // | String
@@ -95,17 +95,17 @@ MUnit Maven プラグインでは、一連の省略可能なパラメータを�
 // | coverageReportDataFile
 // | File
 // | Directory where the coverage report data lives. +
-// *Default value: `${project.build.directory}/munit-reports/coverage-report.data`*
+// *デフォルト値: `${project.build.directory}/munit-reports/coverage-report.data`*
 
 // | coverageConfigDataFile
 // | File
 // | Directory where the coverage report configuration file lives. +
-// *Default value: ${project.build.directory}/munit-reports/coverage-config.data"*
+// *デフォルト値: ${project.build.directory}/munit-reports/coverage-config.data"*
 
 // |muleWorkingDirectory
 // |File
 // |Directory to be used as Mule working directory. +
-// *Default value: `${project.build.directory}/.mule`*
+// *デフォルト値: `${project.build.directory}/.mule`*
 
 // | session
 // | MavenSession
@@ -130,4 +130,4 @@ MUnit Maven プラグインでは、一連の省略可能なパラメータを�
 
 * xref:to-configure-munit-maven-plugin-maven.adoc[POM ファイルから MUnit Maven プラグインを設定する方法]
 * xref:coverage-maven-concept.adoc[Maven でのカバー率について]
-** xref:faq-how-munit-coverage.adoc[FAQ: MUnit がカバー率を計算する方法]
+** ​xref:faq-how-munit-coverage.adoc[FAQ: MUnit がカバー率を計算する方法]​

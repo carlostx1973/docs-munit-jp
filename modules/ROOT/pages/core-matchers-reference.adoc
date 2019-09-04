@@ -51,7 +51,7 @@ expression="#[payload]"
 is="#[MunitTools::withEncoding('UTF-8')]"/>
 ----
 
-== both(, Matcher)
+== both(Matcher, Matcher)
 
 指定された両方のマッチャーが成功することを確認します。
 

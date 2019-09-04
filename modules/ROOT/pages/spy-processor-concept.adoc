@@ -92,4 +92,4 @@ Spy の内部で変数や属性を設定したり、ペイロードを変更し�
 
 == 関連情報
 
-** xref:message-processors.adoc[MUnit イベントプロセッサについて]
+** ​xref:message-processors.adoc[MUnit イベントプロセッサについて]​

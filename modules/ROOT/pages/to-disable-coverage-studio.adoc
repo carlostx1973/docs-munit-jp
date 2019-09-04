@@ -5,7 +5,7 @@ endif::[]
 
 これを選択した場合、カバー率計算をプロジェクトの実行設定から無効にできます。
 
-* Package Explorer 内を右クリックし、*[Run As (別のユーザとして実行)]*、*[Run Configurations... (設定の実行...)]* の順に選択します。MUnit 実行設定ファイルを選択してスイートの設定にアクセスし、[Coverage Settings (カバー率設定)] の下にある [Run coverage (カバー率を実行)] オプションをオフにします。
+* Package Explorer 内を右クリックし、​*[Run As (別のユーザとして実行)]*​、​*[Run Configurations... (設定の実行...)]*​ の順に選択します。MUnit 実行設定ファイルを選択してスイートの設定にアクセスし、[Coverage Settings (カバー率設定)] の下にある [Run coverage (カバー率を実行)] オプションをオフにします。
 
 image::using-munit-in-anypoint-studio-2cd78.png[]
 

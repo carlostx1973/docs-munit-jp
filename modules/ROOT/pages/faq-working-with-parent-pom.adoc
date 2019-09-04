@@ -5,7 +5,7 @@ endif::[]
 
 親 POM ファイルで MUnit プラグインを宣言できます。このファイルの下位のすべての子プロジェクトはこの定義の参照を選択できます。
 
-親 - 子 POM リレーションで MUnit プラグインを適切に使用するには、親 `pom.xml` ファイルの `<pluginManagement>` セクションに MUnit プラグインの宣言を含める必要があります。
+親 - 子 POM リレーションで MUnit プラグインを適切に使用するには、親 ​`pom.xml`​ ファイルの ​`<pluginManagement>`​ セクションに MUnit プラグインの宣言を含める必要があります。
 
 [source,xml,linenums]
 ----

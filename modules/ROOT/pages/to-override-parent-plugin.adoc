@@ -39,7 +39,7 @@ endif::[]
 </plugin>
 ----
 
-この例では、この子プロジェクトはコンソールカバー率レポートを上書きし、HTML 形式でのみレポートを置き換えますが、親の他の要素 (`<failBuild>`、`<requiredApplicationCoverage>`、`<requiredResourceCoverage>`、`<requiredFlowCoverage>`) の値が参照されていないため、この子ファイルはこれらの要素を継承せず、デフォルト値が適用されます。
+この例では、この子プロジェクトはコンソールカバー率レポートを上書きし、HTML 形式でのみレポートを置き換えますが、親の他の要素 (​`<failBuild>`​、​`<requiredApplicationCoverage>`​、​`<requiredResourceCoverage>`​、​`<requiredFlowCoverage>`​) の値が参照されていないため、この子ファイルはこれらの要素を継承せず、デフォルト値が適用されます。
 
 == 関連情報
 

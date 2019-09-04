@@ -21,9 +21,9 @@ Mock When プロセッサでは、定義された名前と属性に一致した�
 </munit-tools:mock-when>
 ----
 
-モックするプロセッサを定義するように `processor` 属性を設定し、属性の名前と値を定義するように `with-attribute` 要素を設定できます。上記の例では、POST メソッドを定義しています。
+モックするプロセッサを定義するように ​`processor`​ 属性を設定し、属性の名前と値を定義するように ​`with-attribute`​ 要素を設定できます。上記の例では、POST メソッドを定義しています。
 
-DataWeave の機能とマッピングを利用して、`then-return` 要素の `value` 属性を設定することもできます。たとえば、次のように `src\test\resources\sample_data` ファイル内に `mockPost.dwl` を作成します。
+DataWeave の機能とマッピングを利用して、​`then-return`​ 要素の ​`value`​ 属性を設定することもできます。たとえば、次のように ​`src\test\resources\sample_data`​ ファイル内に ​`mockPost.dwl`​ を作成します。
 
 [source]
 ----
@@ -35,7 +35,7 @@ output application/json
 }
 ----
 
-次の Dataweave ファイルは、POST 要求で送信するペイロードを作成してから、`readUrl` DataWeave 機能を使用してマッピングファイルを読み込みます。
+次の Dataweave ファイルは、POST 要求で送信するペイロードを作成してから、​`readUrl`​ DataWeave 機能を使用してマッピングファイルを読み込みます。
 
 [source,xml,linenums]
 ----
@@ -44,7 +44,7 @@ output application/json
 </munit-tools:then-return>
 ----
 
-最後に、モックプロセッサが返す応答種別を定義するように `then-return` 要素を設定できます。ペイロード、変数、属性、またはエラーにさえもすることができます。
+最後に、モックプロセッサが返す応答種別を定義するように ​`then-return`​ 要素を設定できます。ペイロード、変数、属性、またはエラーにさえもすることができます。
 
 たとえば、次のような Web サービスコンシューマをモックできます。
 

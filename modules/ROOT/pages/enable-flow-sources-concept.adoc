@@ -1,82 +1,64 @@
-= Enable Flow Sources について
+= Enable Flow Sources
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 :keywords: munit, テスト, フローソース
+:flow_name: http-example-flow
+:port: 1234
+:payload: 'Hello World!'
 
-MUnit テスト内の Enable Flow Sources 要素は、テストに対してどのソースを読み込んで実行するかを MUnit に指示します。
+MUnit はデフォルトでどのフローエンドポイントも読み込まないため、​*MUnit Test*​ 内で ​*Enable Flow Sources*​ 要素を使用して、Munit ランタイムがテストで読み込み、実行する必要があるエンドポイントを設定する必要があります。
 
-MUnit はどのフローエンドポイントも読み込みません。各自がテスト用に初期化するエンドポイントを設定します。
+たとえば、アプリケーションに、特定のペイロードを返す HTTP リスナを使用するフローがあるとします。
 
-たとえば、HTTP リスナが特定のペイロードを返すアプリケーションがあるとします。
-
-[source,xml,linenums]
+[source,xml,linenums,subs="verbatim,attributes"]
 ----
-
 <http:listener-config name="HTTP_Listener_config">
-		<http:listener-connection host="localhost" port="${http.transport.port}" />
+    <http:listener-connection host="localhost" port="{port}"/>
 </http:listener-config>
 
-<flow name="http-transportFlow">
-
-  <http:listener config-ref="HTTP_Listener_config" path="/"/>
-  <set-payload value='#["Hello World!"]'/>
-
-
+<flow name="{flow_name}">
+    <http:listener path="/" config-ref="HTTP_Listener_config"/>
+    <set-payload value="#[{payload}]" mimeType="text/plain"/>
 </flow>
 ----
 
-MUnit がエンドポイントに到達するには、enable-flow-source プロパティで http-transportFlow を有効にする必要があります。
+MUnit がエンドポイントに到達するには、​`enable-flow-source`​ プロパティで ​`{flow_name}`​ を有効にする必要があります。
 
-[source,xml,linenums]
+[source,xml,linenums,subs="verbatim,attributes"]
 ----
-
-<http:request-config name="HTTP_Request_configuration">
-  <http:request-connection host="localhost" port="${http.transport.port}" />
+<http:request-config name="HTTP_Request_config">
+    <http:request-connection host="localhost" port="{port}"/>
 </http:request-config>
 
-<munit:test name="http-request-test-validatePayload" description="test">
-
+<munit:test name="http-example-test">
     <munit:enable-flow-sources>
-        <munit:enable-flow-source value="http-transportFlow"/>
+        <munit:enable-flow-source value="{flow_name}"/> <!--1-->
     </munit:enable-flow-sources>
 
     <munit:execution>
-        <http:request method="GET" path="/" config-ref="HTTP_Request_configuration"/>
+        <http:request method="GET" path="/" config-ref="HTTP_Request_config"/>
     </munit:execution>
 
     <munit:validation>
-        <munit-tools:assert-that expression="#[payload]" is="#[MunitTools::equalTo('Hello World')]" />
+        <munit-tools:assert-that expression="#[payload]"
+                                 is="#[MunitTools::equalTo({payload})]"/>
     </munit:validation>
-
 </munit:test>
 ----
+<1> ​`{flow_name}`​ の値が有効なフローソースとして表示されていない場合、MUnit テストは
+HTTP リスナ設定を初期化できないため失敗します。
 
-http-transportFlow が有効なフローソースとして表示されていない場合、MUnit テストは http-listener 設定を初期化できないため失敗します。
+== Studio からのフローソースの有効化
 
-== Studio からフローソースを有効にする方法
+Anypoint Studio で MUnit テストの ​*[Mule Properties (Mule プロパティ)]*​ ビューを使用して、フローソースを定義することもできます。
 
-Anypoint Studio で [MUnit Test (MUnit テスト)] の [Mule Properties (Mule プロパティ)] ビューを使用して、フローソースを定義することもできます。
+image::enable-flow-sources-concept.png[]
 
-image::enable-flow-sources-concept-7f313.png[]
-
-. 緑の追加アイコンをクリックします。
-. [Name Of The Flow (フローの名前)] ドロップダウンから、有効にするフローの名前を選択します。
+. ​*[Add (追加)]*​ をクリックします。
+. ​*[Name of the flow (フローの名前)]*​ ドロップダウンから、有効にするフローの名前を選択します。
 
 
 == 関連情報
 
 * xref:munit-test-concept.adoc[Munit テストについて]
-
-
-// .This is how you would enable your APIKit resources
-// [source,xml,linenums]
-// ----
-// <munit:test name="test-flow" description="">
-//     <munit:enable-flow-sources>
-//         <munit:enable-flow-source value="apikit-test-main"/>
-//         <munit:enable-flow-source value="get:\resources:apikit-test-config"/>
-//         <munit:enable-flow-source value="put:\resources:application\json:apikit-test-config"/>
-//     </munit:enable-flow-source>
-// </munit:test>
-// ----

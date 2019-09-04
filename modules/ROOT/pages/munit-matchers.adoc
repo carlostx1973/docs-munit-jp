@@ -9,7 +9,7 @@ MUnit マッチャーは、特定の値ではなく式の任意の値のアサ�
 
 [NOTE]
 --
-マッチャーを定義する場合、次の例のようにプレフィックス `MunitTools::` を式に含めます。
+マッチャーを定義する場合、次の例のようにプレフィックス ​`MunitTools::`​ を式に含めます。
 --
 
 マッチャーは、検証する条件の種別に応じてグループ化されます。
@@ -25,7 +25,7 @@ MUnit マッチャーは、特定の値ではなく式の任意の値のアサ�
 
 コアマッチャー:
 
-* xref:core-matchers-reference.adoc#nullvalue[nullValue()] は、式が null かどうかをチェックします。
+* ​xref:core-matchers-reference.adoc#nullvalue[nullValue()]​ は、式が null かどうかをチェックします。
 +
 例:
 +
@@ -34,7 +34,7 @@ MUnit マッチャーは、特定の値ではなく式の任意の値のアサ�
 #[MunitTools::nullValue()]
 ----
 
-* xref:core-matchers-reference.adoc#notnullvalue[notNullValue()] は、式が null でないかどうかをチェックします。
+* ​xref:core-matchers-reference.adoc#notnullvalue[notNullValue()]​ は、式が null でないかどうかをチェックします。
 +
 例:
 +
@@ -43,7 +43,7 @@ MUnit マッチャーは、特定の値ではなく式の任意の値のアサ�
 #[MunitTools::notNullValue()]
 ----
 
-* xref:core-matchers-reference.adoc#withmediatype-string[withMediaType(String)] は、式のメディア種別が指定された種別かどうかをチェックします。
+* ​xref:core-matchers-reference.adoc#withmediatype-string[withMediaType(String)]​ は、式のメディア種別が指定された種別かどうかをチェックします。
 +
 例:
 +
@@ -52,7 +52,7 @@ MUnit マッチャーは、特定の値ではなく式の任意の値のアサ�
 #[MunitTools::withMediaType('text/xml')]
 ----
 
-* xref:core-matchers-reference.adoc#withencoding-string[withEncoding(String)] は、式のエンコードが指定されたエンコードかどうかをチェックします。
+* ​xref:core-matchers-reference.adoc#withencoding-string[withEncoding(String)]​ は、式のエンコードが指定されたエンコードかどうかをチェックします。
 +
 例:
 +
@@ -61,7 +61,7 @@ MUnit マッチャーは、特定の値ではなく式の任意の値のアサ�
 #[MunitTools::withEncoding('UTF-8')]
 ----
 
-* xref:core-matchers-reference.adoc#both-matcher-matcher[both(Matcher, Matcher)] は、指定されたマッチャーが両方とも成功しているかどうかをチェックします。
+* ​xref:core-matchers-reference.adoc#both-matcher-matcher[both(Matcher, Matcher)]​ は、指定されたマッチャーが両方とも成功しているかどうかをチェックします。
 +
 例:
 +
@@ -70,7 +70,7 @@ MUnit マッチャーは、特定の値ではなく式の任意の値のアサ�
 #[MunitTools::both(MunitTools::notNullValue(),MunitTools::equalTo('example'))]
 ----
 
-* xref:core-matchers-reference.adoc#either-matcher-matcher[either(Matcher,Matcher)] は、1 つ以上のマッチャーが成功しているかどうかをチェックします。
+* ​xref:core-matchers-reference.adoc#either-matcher-matcher[either(Matcher,Matcher)]​ は、1 つ以上のマッチャーが成功しているかどうかをチェックします。
 +
 例:
 +
@@ -79,7 +79,7 @@ MUnit マッチャーは、特定の値ではなく式の任意の値のアサ�
 #[MunitTools::either(MunitTools::nullValue(),MunitTools::equalTo(0))]
 ----
 
-* xref:core-matchers-reference.adoc#not-matcher[not(Matcher)] は、指定されたマッチャーが成功していないかどうかをチェックします。
+* ​xref:core-matchers-reference.adoc#not-matcher[not(Matcher)]​ は、指定されたマッチャーが成功していないかどうかをチェックします。
 +
 例:
 +
@@ -87,7 +87,7 @@ MUnit マッチャーは、特定の値ではなく式の任意の値のアサ�
 ----
 #[MunitTools::not(MunitTools::equalTo(0))]
 ----
-* xref:core-matchers-reference.adoc#anyof-matchers[anyOf(Matchers[\])] は、いずれかのマッチャーが成功しているかどうかをチェックします。
+* ​xref:core-matchers-reference.adoc#anyof-matchers[anyOf(Matchers[\]​)] は、いずれかのマッチャーが成功しているかどうかをチェックします。
 +
 例:
 +
@@ -96,7 +96,7 @@ MUnit マッチャーは、特定の値ではなく式の任意の値のアサ�
 #[MunitTools::anyOf([MunitTools::notNullValue(),MunitTools::withMediaType('text/xml'),MunitTools::isEmptyString()])]
 ----
 
-* xref:core-matchers-reference.adoc#allof-matchers[allOf(Matchers[\])] は、すべてのマッチャーが成功しているかどうかをチェックします。
+* ​xref:core-matchers-reference.adoc#allof-matchers[allOf(Matchers[\]​)] は、すべてのマッチャーが成功しているかどうかをチェックします。
 +
 例:
 +
@@ -116,7 +116,7 @@ MUnit マッチャーは、特定の値ではなく式の任意の値のアサ�
 
 文字列マッチャー:
 
-* xref:string-matchers-reference.adoc#containsstring-string[containsString(String)] は、式に指定された文字列が含まれているかどうかをチェックします。
+* ​xref:string-matchers-reference.adoc#containsstring-string[containsString(String)]​ は、式に指定された文字列が含まれているかどうかをチェックします。
 ++
 例:
 +
@@ -125,7 +125,7 @@ MUnit マッチャーは、特定の値ではなく式の任意の値のアサ�
 #[MunitTools::containsString('example')]
 ----
 
-* xref:string-matchers-reference.adoc#startswith-string[startsWith(String)] は、式が指定された文字列で開始しているかどうかをチェックします。
+* ​xref:string-matchers-reference.adoc#startswith-string[startsWith(String)]​ は、式が指定された文字列で開始しているかどうかをチェックします。
 +
 例:
 +
@@ -134,7 +134,7 @@ MUnit マッチャーは、特定の値ではなく式の任意の値のアサ�
 #[MunitTools::startsWith('exam')]
 ----
 
-* xref:string-matchers-reference.adoc#endswith-string[endsWith(String)] は、式が指定された文字列で終了しているかどうかをチェックします。
+* ​xref:string-matchers-reference.adoc#endswith-string[endsWith(String)]​ は、式が指定された文字列で終了しているかどうかをチェックします。
 +
 例:
 +
@@ -143,7 +143,7 @@ MUnit マッチャーは、特定の値ではなく式の任意の値のアサ�
 #[MunitTools::endsWith('ple')]
 ----
 
-* xref:string-matchers-reference.adoc#isemptystring[isEmptyString()] は、式の長さが 0 かどうかをチェックします。
+* ​xref:string-matchers-reference.adoc#isemptystring[isEmptyString()]​ は、式の長さが 0 かどうかをチェックします。
 +
 例:
 +
@@ -152,7 +152,7 @@ MUnit マッチャーは、特定の値ではなく式の任意の値のアサ�
 #[MunitTools::isEmptyString()]
 ----
 
-* xref:string-matchers-reference.adoc#isemptyornullstring[isEmptyOrNullString()] は、式が null または式の長さが 0 かどうかをチェックします。
+* ​xref:string-matchers-reference.adoc#isemptyornullstring[isEmptyOrNullString()]​ は、式が null または式の長さが 0 かどうかをチェックします。
 +
 例:
 +
@@ -161,7 +161,7 @@ MUnit マッチャーは、特定の値ではなく式の任意の値のアサ�
 #[MunitTools::isEmptyOrNullString()]
 ----
 
-* xref:string-matchers-reference.adoc#equaltoignoringcase-string[equalToIgnoringCase(String)] は、式が指定された文字列と一致しているかどうかをチェックします (大文字と小文字の違いは無視される)。
+* ​xref:string-matchers-reference.adoc#equaltoignoringcase-string[equalToIgnoringCase(String)]​ は、式が指定された文字列と一致しているかどうかをチェックします (大文字と小文字の違いは無視される)。
 +
 例:
 +
@@ -170,7 +170,7 @@ MUnit マッチャーは、特定の値ではなく式の任意の値のアサ�
 #[MunitTools::equalToIgnoringCase('Example')]
 ----
 
-* xref:string-matchers-reference.adoc#equaltoignoringwhitespace-string[equalToIgnoringWhiteSpace(String)] は、式が文字列一致しているかどうかをチェックします (先頭と末尾の空白は無視され、すべての内部空白は 1 つの空白に圧縮される)。
+* ​xref:string-matchers-reference.adoc#equaltoignoringwhitespace-string[equalToIgnoringWhiteSpace(String)]​ は、式が文字列一致しているかどうかをチェックします (先頭と末尾の空白は無視され、すべての内部空白は 1 つの空白に圧縮される)。
 +
 例:
 +
@@ -179,7 +179,7 @@ MUnit マッチャーは、特定の値ではなく式の任意の値のアサ�
 #[MunitTools::equalToIgnoringWhiteSpace('An Example')]
 ----
 
-* xref:string-matchers-reference.adoc#stringcontainsinorder-array-string[stringContainsInOrder(String, String,...)] は、表示順序に関係なく、式に指定されたすべてのサブ文字列が含まれているかどうかをチェックします。
+* ​xref:string-matchers-reference.adoc#stringcontainsinorder-array-string[stringContainsInOrder(String, String,...)]​ は、表示順序に関係なく、式に指定されたすべてのサブ文字列が含まれているかどうかをチェックします。
 +
 例:
 +
@@ -197,13 +197,13 @@ MUnit マッチャーは、特定の値ではなく式の任意の値のアサ�
 
 [Note]
 --
-一部の比較可能なマッチャーは、`Comparable` 型を取ります。
-`Comparable` は、相互に比較できるすべての型を表す DataWeave 型です。 
-許可されているプリミティブは、`String`、`Number`、`Boolean`、`DateTime`、`LocalDateTime`、`LocalTime`、`Time`、`TimeZone` です。
+一部の比較可能なマッチャーは、​`Comparable`​ 型を取ります。
+​`Comparable`​ は、相互に比較できるすべての型を表す DataWeave 型です。 
+許可されているプリミティブは、​`String`​、​`Number`​、​`Boolean`​、​`DateTime`​、​`LocalDateTime`​、​`LocalTime`​、​`Time`​、​`TimeZone`​ です。
 --
 比較可能なマッチャー:
 
-* xref:comparable-matchers-reference.adoc#greaterthan-comparable[greaterThan(Comparable)] は、式が指定された値よりも大きいかどうかをチェックします。
+* ​xref:comparable-matchers-reference.adoc#greaterthan-comparable[greaterThan(Comparable)]​ は、式が指定された値よりも大きいかどうかをチェックします。
 +
 例:
 +
@@ -217,7 +217,7 @@ MUnit マッチャーは、特定の値ではなく式の任意の値のアサ�
 #[MunitTools::greaterThan(|2017-08-09|)]
 ----
 
-* xref:comparable-matchers-reference.adoc#greaterthanorequalto-comparable[greaterThanOrEqualTo(Comparable)] は、式が指定された値以上かどうかをチェックします。
+* ​xref:comparable-matchers-reference.adoc#greaterthanorequalto-comparable[greaterThanOrEqualTo(Comparable)]​ は、式が指定された値以上かどうかをチェックします。
 +
 例:
 +
@@ -231,7 +231,7 @@ MUnit マッチャーは、特定の値ではなく式の任意の値のアサ�
 #[MunitTools::greaterThanOrEqualTo(|2017-08-09|)]
 ----
 
-* xref:comparable-matchers-reference.adoc#lessthan-comparable[lessThan(Comparable)] は、式が指定された値よりも小さいかどうかをチェックします。
+* ​xref:comparable-matchers-reference.adoc#lessthan-comparable[lessThan(Comparable)]​ は、式が指定された値よりも小さいかどうかをチェックします。
 +
 例:
 +
@@ -245,7 +245,7 @@ MUnit マッチャーは、特定の値ではなく式の任意の値のアサ�
 #[MunitTools::lessThan(|2017-08-09|)]
 ----
 
-* xref:comparable-matchers-reference.adoc#lessthanorequalto-comparable[lessThanOrEqualTo(Comparable)] は、式が指定された値以下かどうかをチェックします。
+* ​xref:comparable-matchers-reference.adoc#lessthanorequalto-comparable[lessThanOrEqualTo(Comparable)]​ は、式が指定された値以下かどうかをチェックします。
 +
 例:
 +
@@ -259,7 +259,7 @@ MUnit マッチャーは、特定の値ではなく式の任意の値のアサ�
 #[MunitTools::lessThanOrEqualTo(|2017-08-09|)]
 ----
 
-* xref:comparable-matchers-reference.adoc#closeto-number-number[closeTo(Number, Number)] は、式が最初の数値と 2 番目の数値で定義された範囲に収まるかどうかをチェックします。
+* ​xref:comparable-matchers-reference.adoc#closeto-number-number[closeTo(Number, Number)]​ は、式が最初の数値と 2 番目の数値で定義された範囲に収まるかどうかをチェックします。
 +
 例:
 +
@@ -268,7 +268,7 @@ MUnit マッチャーは、特定の値ではなく式の任意の値のアサ�
 #[MunitTools::closeTo(1, 0.01)]
 ----
 
-* xref:comparable-matchers-reference.adoc#equalto-object[equalTo(Object)] は、式が指定された値と等しいかどうかをチェックします。このマッチャーは Dataweave オブジェクトも受け入れます。
+* ​xref:comparable-matchers-reference.adoc#equalto-object[equalTo(Object)]​ は、式が指定された値と等しいかどうかをチェックします。このマッチャーは Dataweave オブジェクトも受け入れます。
 +
 例:
 +
@@ -293,7 +293,7 @@ MUnit マッチャーは、特定の値ではなく式の任意の値のアサ�
 
 イテラブルなマッチャーとマップマッチャー:
 
-* xref:iterable-map-matchers-reference.adoc#everyitem-matcher[everyItem(Matcher)] は、式のすべての要素が指定されたマッチャーと一致しているかどうかをチェックします。このマッチャーは、配列でのみ機能します。
+* ​xref:iterable-map-matchers-reference.adoc#everyitem-matcher[everyItem(Matcher)]​ は、式のすべての要素が指定されたマッチャーと一致しているかどうかをチェックします。このマッチャーは、配列でのみ機能します。
 +
 例:
 +
@@ -307,7 +307,7 @@ MUnit マッチャーは、特定の値ではなく式の任意の値のアサ�
 #[MunitTools::everyItem(MunitTools::startsWith('a'))]
 ----
 
-* xref:iterable-map-matchers-reference.adoc#hasitem-matcher[hasItem(Matcher)] は、式のいずれかの要素が指定されたマッチャーと一致しているかどうかをチェックします。このマッチャーは、配列でのみ機能します。
+* ​xref:iterable-map-matchers-reference.adoc#hasitem-matcher[hasItem(Matcher)]​ は、式のいずれかの要素が指定されたマッチャーと一致しているかどうかをチェックします。このマッチャーは、配列でのみ機能します。
 +
 例:
 +
@@ -321,7 +321,7 @@ MUnit マッチャーは、特定の値ではなく式の任意の値のアサ�
 #[MunitTools::hasItem(MunitTools::startsWith('a'))]
 ----
 
-* xref:iterable-map-matchers-reference.adoc#hassize-matcher[hasSize(Matcher)] は、式のサイズが指定されたマッチャーと一致しているかどうかをチェックします。
+* ​xref:iterable-map-matchers-reference.adoc#hassize-matcher[hasSize(Matcher)]​ は、式のサイズが指定されたマッチャーと一致しているかどうかをチェックします。
 +
 例:
 +
@@ -335,7 +335,7 @@ MUnit マッチャーは、特定の値ではなく式の任意の値のアサ�
 #[MunitTools::hasSize(MunitTools::startsWith('a'))]
 ----
 
-* xref:iterable-map-matchers-reference.adoc#isempty[isEmpty()] は、式が空のコレクションかどうかをチェックします。
+* ​xref:iterable-map-matchers-reference.adoc#isempty[isEmpty()]​ は、式が空のコレクションかどうかをチェックします。
 +
 例:
 +
@@ -344,7 +344,7 @@ MUnit マッチャーは、特定の値ではなく式の任意の値のアサ�
 #[MunitTools::isEmpty()]
 ----
 
-* xref:iterable-map-matchers-reference.adoc#haskey-matcher[hasKey(Matcher)] は、指定されたマッチャーと一致するキーが式に含まれているかどうかをチェックします。このマッチャーは、マップでのみ機能します。
+* ​xref:iterable-map-matchers-reference.adoc#haskey-matcher[hasKey(Matcher)]​ は、指定されたマッチャーと一致するキーが式に含まれているかどうかをチェックします。このマッチャーは、マップでのみ機能します。
 +
 例:
 +
@@ -358,7 +358,7 @@ MUnit マッチャーは、特定の値ではなく式の任意の値のアサ�
 #[MunitTools::hasKey(MunitTools::startsWith('a'))]
 ----
 
-* xref:iterable-map-matchers-reference.adoc#hasvalue-matcher[hasValue(Matcher)] は、指定されたマッチャーと一致する値が式に含まれているかどうかをチェックします。このマッチャーは、マップでのみ機能します。
+* ​xref:iterable-map-matchers-reference.adoc#hasvalue-matcher[hasValue(Matcher)]​ は、指定されたマッチャーと一致する値が式に含まれているかどうかをチェックします。このマッチャーは、マップでのみ機能します。
 +
 例:
 +

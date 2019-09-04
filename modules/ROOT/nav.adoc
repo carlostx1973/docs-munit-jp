@@ -1,39 +1,39 @@
-.xref:index.adoc[MUnit について]
+.​xref:index.adoc[MUnit について]​
 * xref:index.adoc[MUnit について]
 * xref:munit-suite.adoc[MUnit テストスイートについて]
- ** xref:munit-test-concept.adoc[Munit テストについて]
-  *** xref:munit-scaffold-test-task.adoc[RAML から MUnit テストスイートを生成する方法]
-  *** xref:munit-test-reference.adoc[MUnit テストリファレンス]
- ** xref:enable-flow-sources-concept.adoc[Enable Flow Sources について]
- ** xref:before-after-scopes-concept.adoc[Before/After スコープについて]
-  *** xref:before-after-scopes-reference.adoc[Before/After スコープリファレンス]
+ ** ​xref:munit-test-concept.adoc[Munit テストについて]​
+  *** ​xref:munit-scaffold-test-task.adoc[RAML から MUnit テストスイートを生成する方法]​
+  *** ​xref:munit-test-reference.adoc[MUnit テストリファレンス]​
+ ** ​xref:enable-flow-sources-concept.adoc[Enable Flow Sources について]​
+ ** ​xref:before-after-scopes-concept.adoc[Before/After スコープについて]​
+  *** ​xref:before-after-scopes-reference.adoc[Before/After スコープリファレンス]​
 * xref:munit-maven-support.adoc[MUnit Maven プラグインについて]
- ** xref:to-set-up-munit-maven-plugin.adoc[MUnit Maven プラグインをセットアップする方法 (Maven)]
- ** xref:to-configure-munit-maven-plugin-maven.adoc[POM ファイルから MUnit Maven プラグインを設定する方法]
- ** xref:faq-working-with-parent-pom.adoc[FAQ: 親 POM ファイルを処理する方法]
-  *** xref:to-inherit-parent-plugin.adoc[親のプラグインを継承する方法]
-  *** xref:to-ignore-parent-plugin.adoc[親のプラグインを無視する方法]
-  *** xref:to-override-parent-plugin.adoc[親のプラグインを上書きする方法]
- ** xref:munit-maven-plugin.adoc[MUnit Maven プラグインを操作する方法]
- ** xref:faq-how-to-read-munit-test-results.adoc[FAQ: MUnit テスト結果を読み取る方法]
- ** xref:munit-maven-plugin-configuration.adoc[MUnit Maven プラグイン設定リファレンス]
+ ** ​xref:to-set-up-munit-maven-plugin.adoc[MUnit Maven プラグインをセットアップする方法 (Maven)]​
+ ** ​xref:to-configure-munit-maven-plugin-maven.adoc[POM ファイルから MUnit Maven プラグインを設定する方法]​
+ ** ​xref:faq-working-with-parent-pom.adoc[FAQ: 親 POM ファイルを処理する方法]​
+  *** ​xref:to-inherit-parent-plugin.adoc[親のプラグインを継承する方法]​
+  *** ​xref:to-ignore-parent-plugin.adoc[親のプラグインを無視する方法]​
+  *** ​xref:to-override-parent-plugin.adoc[親のプラグインを上書きする方法]​
+ ** ​xref:munit-maven-plugin.adoc[MUnit Maven プラグインを操作する方法]​
+ ** ​xref:faq-how-to-read-munit-test-results.adoc[FAQ: MUnit テスト結果を読み取る方法]​
+ ** ​xref:munit-maven-plugin-configuration.adoc[MUnit Maven プラグイン設定リファレンス]​
 * xref:munit-domain-support.adoc[ドメインベースのアプリケーションの MUnit サポートについて]
 * xref:munit-coverage-report.adoc[カバー率レポートについて]
- ** xref:faq-how-munit-coverage.adoc[FAQ: MUnit がカバー率を計算する方法]
- ** xref:coverage-maven-concept.adoc[Maven でのカバー率について]
- ** xref:coverage-studio-concept.adoc[カバー率レポートについて (Studio)]
- ** xref:to-disable-coverage-studio.adoc[カバー率レポートを無効にする方法 (Studio)]
+ ** ​xref:faq-how-munit-coverage.adoc[FAQ: MUnit がカバー率を計算する方法]​
+ ** ​xref:coverage-maven-concept.adoc[Maven でのカバー率について]​
+ ** ​xref:coverage-studio-concept.adoc[カバー率レポートについて (Studio)]​
+ ** ​xref:to-disable-coverage-studio.adoc[カバー率レポートを無効にする方法 (Studio)]​
 * xref:message-processors.adoc[MUnit イベントプロセッサについて]
- ** xref:assertion-message-processor.adoc[Assert That イベントプロセッサについて]
-  *** xref:munit-matchers.adoc[MUnit マッチャーについて]
-   **** xref:core-matchers-reference.adoc[コアマッチャーリファレンス]
-   **** xref:string-matchers-reference.adoc[文字列マッチャーリファレンス]
-   **** xref:comparable-matchers-reference.adoc[比較可能マッチャーリファレンス]
-   **** xref:iterable-map-matchers-reference.adoc[イテラブルおよびマップマッチャーリファレンス]
- ** xref:fail-event-processor.adoc[Fail イベントプロセッサについて]
- ** xref:run-custom-event-processor.adoc[Run Custom イベントプロセッサについて]
- ** xref:set-message-processor.adoc[Set Event プロセッサについて]
- ** xref:mock-message-processor.adoc[Mock When イベントプロセッサについて]
- ** xref:verify-message-processor.adoc[Verify イベントプロセッサについて]
- ** xref:spy-processor-concept.adoc[Spy イベントプロセッサについて]
+ ** ​xref:assertion-message-processor.adoc[Assert That イベントプロセッサについて]​
+  *** ​xref:munit-matchers.adoc[MUnit マッチャーについて]​
+   **** ​xref:core-matchers-reference.adoc[コアマッチャーリファレンス]​
+   **** ​xref:string-matchers-reference.adoc[文字列マッチャーリファレンス]​
+   **** ​xref:comparable-matchers-reference.adoc[比較可能マッチャーリファレンス]​
+   **** ​xref:iterable-map-matchers-reference.adoc[イテラブルおよびマップマッチャーリファレンス]​
+ ** ​xref:fail-event-processor.adoc[Fail イベントプロセッサについて]​
+ ** ​xref:run-custom-event-processor.adoc[Run Custom イベントプロセッサについて]​
+ ** ​xref:set-message-processor.adoc[Set Event プロセッサについて]​
+ ** ​xref:mock-message-processor.adoc[Mock When イベントプロセッサについて]​
+ ** ​xref:verify-message-processor.adoc[Verify イベントプロセッサについて]​
+ ** ​xref:spy-processor-concept.adoc[Spy イベントプロセッサについて]​
 * xref:runtime-patching.adoc[ランタイムのパッチ適用]

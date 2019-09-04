@@ -15,7 +15,7 @@ XML 構造の性質上、主にコンテナ要素 (子要素を含む XML) の�
 
 
 //_TODO: Commenting Out. check with the team
-* *コンテナ要素と考慮されるイベントプロセッサ*
+* ​*コンテナ要素と考慮されるイベントプロセッサ*​
 // ** Enricher
 // ** Processor chain
 ** Choice Router
@@ -25,7 +25,7 @@ XML 構造の性質上、主にコンテナ要素 (子要素を含む XML) の�
 ** For Each
 // ** Round Robin
 // ** Splitter
-* *コンテナ要素と考慮されないイベントプロセッサ*
+* ​*コンテナ要素と考慮されないイベントプロセッサ*​
 ** Batch Step
 // ** Catch
 // ** Catch ref
